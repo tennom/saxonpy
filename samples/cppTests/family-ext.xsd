@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://myexample/family_ext" xmlns:fam="http://myexample/family" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://myexample/family" schemaLocation="family.xsd"/>
+  <element name="Cousin" type="string" substitutionGroup="fam:FamilyMember"/>
+</schema>

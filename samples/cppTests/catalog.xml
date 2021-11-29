@@ -1,0 +1,16 @@
+<!DOCTYPE catalog
+ PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN"
+ "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
+         prefer="public">
+ <delegatePublic publicIdStartString="-//A//"
+                 catalog="catalog2.xml"/>
+ <uri name="http://example.com/test.xsl"
+         uri="file:///home/ond1/work/svn/latest9.9-saxonc/samples/php/catalog-test/test.xsl"/>
+ <uri name="http://example.com/example.xml"
+         uri="file:///home/ond1/work/svn/latest9.9-saxonc/samples/php/catalog-test/example.xml"/>        
+ <uri name="http://example.com/test.xsd"
+         uri="file:///home/ond1/work/svn/latest9.9-saxonc/samples/php/catalog-test/test.xsd"/>
+ <uri name="http://example.com/test1.xsd"
+         uri="file:///home/ond1/work/svn/latest9.9-saxonc/samples/php/catalog-test/test1.xsd"/>         
+</catalog>

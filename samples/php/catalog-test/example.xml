@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!DOCTYPE root [
+ <!ENTITY text PUBLIC "-//A//XML CATALOG IDENTIFIER//EN" 
+  "urn:publicid:-:A:XML+CATALOG+IDENTIFIER:EN">
+]>
+<root xsi:noNamespaceSchemaLocation="http://example.com/test1.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">&text;</root>

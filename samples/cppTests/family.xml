@@ -1,0 +1,5 @@
+<Family xmlns="http://myexample/family" xmlns:fam2="http://myexample/family_ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://myexample/family_ext family-ext.xsd" >
+<Parent>John</Parent>
+<Child>Alice</Child>
+<fam2:Cousin>Pete</fam2:Cousin>
+</Family>

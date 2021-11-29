@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema targetNamespace='http://myexample/family' xmlns:fam='http://myexample/family' xmlns='http://www.w3.org/2001/XMLSchema'>
+  <element name='FamilyMember' type='string' />
+  <element name='Parent' type='string' substitutionGroup='fam:FamilyMember'/>
+  <element name='Child' type='string' substitutionGroup='fam:FamilyMember'/>
+  <element name='Family'>
+    <complexType>
+      <sequence>
+        <element ref='fam:FamilyMember' maxOccurs='unbounded'/>
+      </sequence>
+    </complexType>
+  </element>  
+</schema>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://saxon.sf.net/ns/configuration"
+    edition="EE">
+    <xslt>
+        <extensionElement namespace="http://saxon.sf.net/sql" 
+            factory="net.sf.saxon.option.sql.SQLElementFactory"/>
+    </xslt>
+    
+</configuration>
+

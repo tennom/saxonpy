@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE BOOKLIST SYSTEM "books.dtd">
+<BOOKLIST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="books.xsd">
+   <BOOKS>
+      <ITEM CAT="H">
+         <TITLE>XSLT 2.0 and XPath 2.0 Programmer's Reference</TITLE>
+         <AUTHOR>Michael Kay</AUTHOR>
+         <PUBLISHER>Wrox</PUBLISHER>
+         <PUB-DATE>2008-06-03</PUB-DATE>
+         <LANGUAGE>English</LANGUAGE>
+         <PRICE>36.99</PRICE>
+         <QUANTITY>129</QUANTITY>
+         <ISBN>0470192747</ISBN>
+         <PAGES>1376</PAGES>
+         <DIMENSIONS UNIT="cm">24.1 19.3 5.1</DIMENSIONS>
+         <WEIGHT UNIT="oz">70</WEIGHT>
+      </ITEM>
+      <ITEM CAT="P">
+         <TITLE>XSLT Cookbook</TITLE>
+         <AUTHOR>Sal Mangano</AUTHOR>
+         <PUBLISHER>O'Reilly</PUBLISHER>
+         <PUB-DATE>2005-12-24</PUB-DATE>
+         <LANGUAGE>English</LANGUAGE>
+         <PRICE>35.99</PRICE>
+         <QUANTITY>129</QUANTITY>
+         <ISBN>0596009747</ISBN>
+         <PAGES>778</PAGES>
+         <DIMENSIONS UNIT="cm">23.3 17.8 3.6</DIMENSIONS>
+         <WEIGHT UNIT="oz">40</WEIGHT>
+      </ITEM>
+   </BOOKS>
+   <CATEGORIES DESC="Miscellaneous categories">
+      <CATEGORY CODE="P" DESC="Paperback"/>
+      <CATEGORY CODE="MMP" DESC="Mass-market Paperback"/>
+      <CATEGORY CODE="H" DESC="Hard Cover"/>
+   </CATEGORIES>
+</BOOKLIST>
