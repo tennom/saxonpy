@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest]
-        python-version: [3.7, 3.8]
+        python-version: [3.8]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -17,4 +17,8 @@ jobs:
         run: |
           pip install -r requirements.txt
           python setup.py bdist_wheel
-        continue-on-error: true
+      - name: delocate libs for multiple macOS support.
+        run: |
+          pip install delocate
+          delocate-listdeps dist/*.whl 
+        continue-on-error: false
