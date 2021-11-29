@@ -20,5 +20,4 @@ jobs:
       - name: delocate libs for multiple macOS support.
         run: |
           pip install delocate
-          delocate-listdeps dist/*.whl 
-        continue-on-error: false
+          python -m delocate-listdeps dist/*.whl 
