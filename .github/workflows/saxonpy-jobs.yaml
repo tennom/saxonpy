@@ -3,6 +3,9 @@ on: [push, workflow_dispatch]
 jobs:
   Matrix-build:
     runs-on: ${{ matrix.os }}
+    env:
+      TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+      TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
     strategy:
       matrix:
         os: [macos-latest]
@@ -20,4 +23,5 @@ jobs:
       - name: delocate libs for multiple macOS support.
         run: |
           pip install delocate
-          delocate-wheel -w fixed_wheels -v dist/*.whl 
+          delocate-wheel -w fixed_wheels -v dist/*.whl
+          ls dist/
