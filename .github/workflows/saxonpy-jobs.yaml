@@ -20,4 +20,4 @@ jobs:
       - name: delocate libs for multiple macOS support.
         run: |
           pip install delocate
-          delocate-wheel -w fixed_wheels -v --all dist/*.whl 
+          delocate-wheel -w fixed_wheels -v dist/*.whl 
