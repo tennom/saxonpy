@@ -37,7 +37,9 @@ setup(
     author='Tennom',
     author_email='tennom@outlook.com',
     include_package_data=True,
-    packages=find_packages(),
+    # packages=find_packages(),
+    package_dir={'saxonpy':'src'},
+    packages=['saxonpy'],
     python_requires='>=3.6',                # Minimum version requirement of the package
     ext_modules=cythonize(ext_modules,
                           compiler_directives={'language_level': 3},

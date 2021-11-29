@@ -1,1 +1,1 @@
-recursive-include saxonpy/saxonc_home *
+recursive-include src/saxonc_home *
