@@ -1,0 +1,1857 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module saxonc</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>saxonc</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/ond1/work/svn/latest9.9-saxonc/Saxon.C.API/python-saxon/saxonc.cpython-35m-x86_64-linux-gnu.so">/home/ond1/work/svn/latest9.9-saxonc/Saxon.C.API/python-saxon/saxonc.cpython-35m-x86_64-linux-gnu.so</a></font></td></tr></table>
+    <p><tt>@package&nbsp;saxonc<br>
+This&nbsp;documentation&nbsp;details&nbsp;the&nbsp;Python&nbsp;API&nbsp;for&nbsp;Saxon/C,&nbsp;which&nbsp;has&nbsp;been&nbsp;written&nbsp;in&nbsp;cython&nbsp;for&nbsp;Python3.<br>
+&nbsp;<br>
+Saxon/C&nbsp;is&nbsp;a&nbsp;cross-compiled&nbsp;variant&nbsp;of&nbsp;Saxon&nbsp;from&nbsp;the&nbsp;Java&nbsp;platform&nbsp;to&nbsp;the&nbsp;C/C++&nbsp;platform.<br>
+Saxon/C&nbsp;provides&nbsp;processing&nbsp;in&nbsp;XSLT&nbsp;3.0,&nbsp;XQuery&nbsp;3.0/3.1&nbsp;and&nbsp;XPath&nbsp;2.0/3.0/3.1,&nbsp;and&nbsp;Schema&nbsp;validation&nbsp;1.0/1.1.<br>
+Main&nbsp;classes&nbsp;in&nbsp;Saxon/C&nbsp;Python&nbsp;API:&nbsp;<a href="#PySaxonProcessor">PySaxonProcessor</a>,&nbsp;<a href="#PyXsltProcessor">PyXsltProcessor</a>,&nbsp;<a href="#PyXslt30Processor">PyXslt30Processor</a>,&nbsp;<a href="#PyXQueryProcessor">PyXQueryProcessor</a>,&nbsp;<a href="#PySchemaValidator">PySchemaValidator</a>,&nbsp;<a href="#PyXdmValue">PyXdmValue</a>,&nbsp;<a href="#PyXdmItem">PyXdmItem</a>,&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;and&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="builtins.html">builtins</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="saxonc.html#PySaxonProcessor">PySaxonProcessor</a>
+</font></dt><dt><font face="helvetica, arial"><a href="saxonc.html#PySchemaValidator">PySchemaValidator</a>
+</font></dt><dt><font face="helvetica, arial"><a href="saxonc.html#PyXPathProcessor">PyXPathProcessor</a>
+</font></dt><dt><font face="helvetica, arial"><a href="saxonc.html#PyXQueryProcessor">PyXQueryProcessor</a>
+</font></dt><dt><font face="helvetica, arial"><a href="saxonc.html#PyXdmValue">PyXdmValue</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="saxonc.html#PyXdmItem">PyXdmItem</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="saxonc.html#PyXdmAtomicValue">PyXdmAtomicValue</a>
+</font></dt><dt><font face="helvetica, arial"><a href="saxonc.html#PyXdmNode">PyXdmNode</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="saxonc.html#PyXslt30Processor">PyXslt30Processor</a>
+</font></dt><dt><font face="helvetica, arial"><a href="saxonc.html#PyXsltProcessor">PyXsltProcessor</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PySaxonProcessor">class <strong>PySaxonProcessor</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;SaxonProcessor&nbsp;acts&nbsp;as&nbsp;a&nbsp;factory&nbsp;for&nbsp;generating&nbsp;XQuery,&nbsp;XPath,&nbsp;Schema&nbsp;and&nbsp;XSLT&nbsp;compilers.<br>
+This&nbsp;class&nbsp;is&nbsp;itself&nbsp;the&nbsp;context&nbsp;that&nbsp;needs&nbsp;to&nbsp;be&nbsp;managed&nbsp;(i.e.&nbsp;allocation&nbsp;&amp;&nbsp;release)<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;saxonc.<a href="#PySaxonProcessor">PySaxonProcessor</a>(license=False)&nbsp;as&nbsp;proc:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Test&nbsp;Saxon/C&nbsp;on&nbsp;Python")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(proc.version)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xdmAtomicval&nbsp;=&nbsp;proc.<a href="#PySaxonProcessor-make_boolean_value">make_boolean_value</a>(False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xslt30proc&nbsp;=&nbsp;proc.<a href="#PySaxonProcessor-new_xslt30_processor">new_xslt30_processor</a>()<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PySaxonProcessor-__enter__"><strong>__enter__</strong></a>(...)</dt><dd><tt>enter&nbsp;method&nbsp;for&nbsp;use&nbsp;with&nbsp;the&nbsp;keyword&nbsp;'with'&nbsp;context</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-__exit__"><strong>__exit__</strong></a>(...)</dt><dd><tt>The&nbsp;exit&nbsp;method&nbsp;for&nbsp;the&nbsp;context&nbsp;<a href="#PySaxonProcessor">PySaxonProcessor</a>.&nbsp;Here&nbsp;we&nbsp;release&nbsp;the&nbsp;Jet&nbsp;VM&nbsp;resources.<br>
+If&nbsp;we&nbsp;have&nbsp;more&nbsp;than&nbsp;one&nbsp;live&nbsp;<a href="#PySaxonProcessor">PySaxonProcessor</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;the&nbsp;<a href="#PySaxonProcessor-release">release</a>()&nbsp;method&nbsp;has&nbsp;no&nbsp;effect.</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-clear_configuration_properties"><strong>clear_configuration_properties</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-clear_configuration_properties">clear_configuration_properties</a>(self)<br>
+Clear&nbsp;the&nbsp;configurations&nbsp;properties&nbsp;in&nbsp;use&nbsp;by&nbsp;the&nbsp;processor</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-exception_clear"><strong>exception_clear</strong></a>(...)</dt><dd><tt>exceltion_clear(self)<br>
+Clear&nbsp;any&nbsp;exception&nbsp;thrown&nbsp;internally&nbsp;in&nbsp;Saxon/C.</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-exception_occurred"><strong>exception_occurred</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-exception_occurred">exception_occurred</a>(self)<br>
+Check&nbsp;if&nbsp;an&nbsp;exception&nbsp;has&nbsp;occurred&nbsp;internally&nbsp;within&nbsp;Saxon/C<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;True&nbsp;or&nbsp;False&nbsp;if&nbsp;an&nbsp;exception&nbsp;has&nbsp;been&nbsp;reported&nbsp;internally&nbsp;in&nbsp;Saxon/C</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-get_string_value"><strong>get_string_value</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-get_string_value">get_string_value</a>(self,&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;item)<br>
+Create&nbsp;an&nbsp;QName&nbsp;Xdm&nbsp;value&nbsp;from&nbsp;string&nbsp;representation&nbsp;in&nbsp;clark&nbsp;notation<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str_&nbsp;(str):&nbsp;The&nbsp;value&nbsp;given&nbsp;in&nbsp;a&nbsp;string&nbsp;form&nbsp;in&nbsp;clark&nbsp;notation.&nbsp;{uri}local<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PyAtomicValue:&nbsp;The&nbsp;corresonding&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-make_atomic_value"><strong>make_atomic_value</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-make_atomic_value">make_atomic_value</a>(self,&nbsp;value_type,&nbsp;value)<br>
+Create&nbsp;an&nbsp;QName&nbsp;Xdm&nbsp;value&nbsp;from&nbsp;string&nbsp;representation&nbsp;in&nbsp;clark&nbsp;notation<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str_&nbsp;(str):&nbsp;The&nbsp;value&nbsp;given&nbsp;in&nbsp;a&nbsp;string&nbsp;form&nbsp;in&nbsp;clark&nbsp;notation.&nbsp;{uri}local<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PyAtomicValue:&nbsp;The&nbsp;corresonding&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-make_boolean_value"><strong>make_boolean_value</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-make_boolean_value">make_boolean_value</a>(self,&nbsp;value)<br>
+Factory&nbsp;method:&nbsp;makes&nbsp;a&nbsp;XdmAtomicValue&nbsp;representing&nbsp;a&nbsp;boolean&nbsp;Value<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(boolean):&nbsp;True&nbsp;or&nbsp;False,&nbsp;to&nbsp;determine&nbsp;which&nbsp;boolean&nbsp;value&nbsp;is&nbsp;required<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PyAtomicValue:&nbsp;The&nbsp;corresonding&nbsp;XdmValue</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-make_double_value"><strong>make_double_value</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-make_double_value">make_double_value</a>(self,&nbsp;value)<br>
+Factory&nbsp;method:&nbsp;makes&nbsp;a&nbsp;double&nbsp;value<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(double):&nbsp;The&nbsp;supplied&nbsp;primitive&nbsp;double&nbsp;value&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>:&nbsp;The&nbsp;corresponding&nbsp;Xdm&nbsp;Value</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-make_float_value"><strong>make_float_value</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-make_float_value">make_float_value</a>(self,&nbsp;value)<br>
+Factory&nbsp;method:&nbsp;makes&nbsp;a&nbsp;float&nbsp;value<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(float):&nbsp;The&nbsp;supplied&nbsp;primitive&nbsp;float&nbsp;value&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>:&nbsp;The&nbsp;corresponding&nbsp;Xdm&nbsp;Value</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-make_integer_value"><strong>make_integer_value</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-make_integer_value">make_integer_value</a>(self,&nbsp;value)<br>
+Factory&nbsp;method:&nbsp;makes&nbsp;either&nbsp;an&nbsp;Int64Value&nbsp;or&nbsp;a&nbsp;BigIntegerValue&nbsp;depending&nbsp;on&nbsp;the&nbsp;value&nbsp;supplied<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(int):&nbsp;The&nbsp;supplied&nbsp;primitive&nbsp;integer&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>:&nbsp;The&nbsp;corresponding&nbsp;Xdm&nbsp;value&nbsp;which&nbsp;is&nbsp;a&nbsp;BigIntegerValue&nbsp;or&nbsp;Int64Value&nbsp;as&nbsp;appropriate</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-make_long_value"><strong>make_long_value</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-make_long_value">make_long_value</a>(self,&nbsp;value)<br>
+Factory&nbsp;method:&nbsp;makes&nbsp;either&nbsp;an&nbsp;Int64Value&nbsp;or&nbsp;a&nbsp;BigIntegerValue&nbsp;depending&nbsp;on&nbsp;the&nbsp;value&nbsp;supplied<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(long):&nbsp;The&nbsp;supplied&nbsp;primitive&nbsp;long&nbsp;value&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>:&nbsp;The&nbsp;corresponding&nbsp;Xdm&nbsp;Value</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-make_qname_value"><strong>make_qname_value</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-make_qname_value">make_qname_value</a>(self,&nbsp;str_)<br>
+Create&nbsp;an&nbsp;QName&nbsp;Xdm&nbsp;value&nbsp;from&nbsp;string&nbsp;representation&nbsp;in&nbsp;clark&nbsp;notation<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str_&nbsp;(str):&nbsp;The&nbsp;value&nbsp;given&nbsp;in&nbsp;a&nbsp;string&nbsp;form&nbsp;in&nbsp;clark&nbsp;notation.&nbsp;{uri}local<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PyAtomicValue:&nbsp;The&nbsp;corresonding&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-make_string_value"><strong>make_string_value</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-make_string_value">make_string_value</a>(self,&nbsp;str_)<br>
+Factory&nbsp;method.&nbsp;Unlike&nbsp;the&nbsp;constructor,&nbsp;this&nbsp;avoids&nbsp;creating&nbsp;a&nbsp;new&nbsp;StringValue&nbsp;in&nbsp;the&nbsp;case<br>
+of&nbsp;a&nbsp;zero-length&nbsp;string&nbsp;(and&nbsp;potentially&nbsp;other&nbsp;strings,&nbsp;in&nbsp;future)<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str_&nbsp;(str):&nbsp;the&nbsp;String&nbsp;value.&nbsp;Null&nbsp;is&nbsp;taken&nbsp;as&nbsp;equivalent&nbsp;to&nbsp;"".<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>:&nbsp;The&nbsp;corresponding&nbsp;Xdm&nbsp;StringValue</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-new_schema_validator"><strong>new_schema_validator</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-new_schema_validator">new_schema_validator</a>(self)<br>
+Create&nbsp;a&nbsp;<a href="#PySchemaValidator">PySchemaValidator</a>&nbsp;which&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;validate&nbsp;instance&nbsp;documents&nbsp;against&nbsp;the&nbsp;schema&nbsp;held&nbsp;by&nbsp;this&nbsp;<br>
+&nbsp;<br>
+Returns:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PySchemaValidator">PySchemaValidator</a>:&nbsp;a&nbsp;newly&nbsp;created&nbsp;<a href="#PySchemaValidator">PySchemaValidator</a></tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-new_xpath_processor"><strong>new_xpath_processor</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-new_xpath_processor">new_xpath_processor</a>(self)<br>
+Create&nbsp;an&nbsp;<a href="#PyXPathProcessor">PyXPathProcessor</a>.&nbsp;A&nbsp;<a href="#PyXPathProcessor">PyXPathProcessor</a>&nbsp;is&nbsp;used&nbsp;to&nbsp;compile&nbsp;and&nbsp;execute&nbsp;XPath&nbsp;expressions.&nbsp;<br>
+&nbsp;<br>
+Returns:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXPathProcessor">PyXPathProcessor</a>:&nbsp;a&nbsp;newly&nbsp;created&nbsp;XPathProcessor</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-new_xquery_processor"><strong>new_xquery_processor</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-new_xquery_processor">new_xquery_processor</a>(self)<br>
+Create&nbsp;an&nbsp;PyXqueryProcessor.&nbsp;A&nbsp;<a href="#PyXQueryProcessor">PyXQueryProcessor</a>&nbsp;is&nbsp;used&nbsp;to&nbsp;compile&nbsp;and&nbsp;execute&nbsp;XQuery&nbsp;queries.&nbsp;<br>
+&nbsp;<br>
+Returns:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXQueryProcessor">PyXQueryProcessor</a>:&nbsp;a&nbsp;newly&nbsp;created&nbsp;<a href="#PyXQueryProcessor">PyXQueryProcessor</a></tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-new_xslt30_processor"><strong>new_xslt30_processor</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-new_xslt30_processor">new_xslt30_processor</a>(self)<br>
+Create&nbsp;an&nbsp;<a href="#PyXslt30Processor">PyXslt30Processor</a>.&nbsp;A&nbsp;<a href="#PyXslt30Processor">PyXslt30Processor</a>&nbsp;is&nbsp;used&nbsp;to&nbsp;compile&nbsp;and&nbsp;execute&nbsp;XSLT&nbsp;3.0&nbsp;stylesheets.&nbsp;<br>
+&nbsp;<br>
+Returns:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXslt30Processor">PyXslt30Processor</a>:&nbsp;a&nbsp;newly&nbsp;created&nbsp;<a href="#PyXslt30Processor">PyXslt30Processor</a></tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-new_xslt_processor"><strong>new_xslt_processor</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-new_xslt_processor">new_xslt_processor</a>(self)<br>
+Create&nbsp;an&nbsp;<a href="#PyXsltProcessor">PyXsltProcessor</a>.&nbsp;A&nbsp;<a href="#PyXsltProcessor">PyXsltProcessor</a>&nbsp;is&nbsp;used&nbsp;to&nbsp;compile&nbsp;and&nbsp;execute&nbsp;XSLT&nbsp;stylesheets.&nbsp;<br>
+&nbsp;<br>
+Returns:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXsltProcessor">PyXsltProcessor</a>:&nbsp;a&nbsp;newly&nbsp;created&nbsp;<a href="#PyXsltProcessor">PyXsltProcessor</a></tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-parse_xml"><strong>parse_xml</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-parse_xml">parse_xml</a>(self,&nbsp;**kwds)<br>
+Parse&nbsp;a&nbsp;lexical&nbsp;representation,&nbsp;source&nbsp;file&nbsp;or&nbsp;uri&nbsp;of&nbsp;the&nbsp;source&nbsp;document&nbsp;and&nbsp;return&nbsp;it&nbsp;as&nbsp;an&nbsp;Xdm&nbsp;Node<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds&nbsp;:&nbsp;The&nbsp;possible&nbsp;keyword&nbsp;arguments&nbsp;must&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;follow&nbsp;(xml_file_name|xml_text|xml_uri)<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmNode">PyXdmNode</a>:&nbsp;The&nbsp;Xdm&nbsp;Node&nbsp;representation&nbsp;of&nbsp;the&nbsp;XML&nbsp;document<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Exception:&nbsp;Error&nbsp;if&nbsp;the&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;not&nbsp;one&nbsp;of&nbsp;xml_file_name|xml_text|xml_uri.</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-release"><strong>release</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-release">release</a>(self)&nbsp;<br>
+Clean&nbsp;up&nbsp;and&nbsp;destroy&nbsp;Java&nbsp;VM&nbsp;to&nbsp;release&nbsp;memory&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-set_configuration_property"><strong>set_configuration_property</strong></a>(...)</dt><dd><tt><a href="#PySaxonProcessor-set_configuration_property">set_configuration_property</a>(self,&nbsp;name,&nbsp;value)<br>
+Set&nbsp;configuration&nbsp;property&nbsp;specific&nbsp;to&nbsp;the&nbsp;processor&nbsp;in&nbsp;use.<br>
+Properties&nbsp;set&nbsp;here&nbsp;are&nbsp;common&nbsp;across&nbsp;all&nbsp;processors.&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(str):&nbsp;The&nbsp;value&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;'l':&nbsp;'on'&nbsp;or&nbsp;'off'&nbsp;-&nbsp;to&nbsp;enable&nbsp;the&nbsp;line&nbsp;number</tt></dd></dl>
+
+<dl><dt><a name="PySaxonProcessor-set_cwd"><strong>set_cwd</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PySaxonProcessor-set_resources_directory"><strong>set_resources_directory</strong></a>(...)</dt><dd><tt>Property&nbsp;to&nbsp;set&nbsp;or&nbsp;get&nbsp;resources&nbsp;directory&nbsp;<br>
+&nbsp;<br>
+:str:&nbsp;A&nbsp;string&nbsp;of&nbsp;the&nbsp;resources&nbsp;directory&nbsp;which&nbsp;Saxon&nbsp;will&nbsp;use</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>cwd</strong></dt>
+<dd><tt>cwd&nbsp;Property&nbsp;represents&nbsp;the&nbsp;current&nbsp;working&nbsp;directorty<br>
+&nbsp;<br>
+:str:&nbsp;Get&nbsp;or&nbsp;set&nbsp;the&nbsp;current&nbsp;working&nbsp;directory</tt></dd>
+</dl>
+<dl><dt><strong>is_schema_aware</strong></dt>
+<dd><tt>is_schema_aware(self)<br>
+Property&nbsp;to&nbsp;check&nbsp;if&nbsp;the&nbsp;processor&nbsp;is&nbsp;Schema&nbsp;aware.&nbsp;A&nbsp;licensed&nbsp;Saxon-EE/C&nbsp;product&nbsp;is&nbsp;schema&nbsp;aware&nbsp;<br>
+&nbsp;<br>
+:bool:&nbsp;Indicate&nbsp;if&nbsp;the&nbsp;processor&nbsp;is&nbsp;schema&nbsp;aware,&nbsp;True&nbsp;or&nbsp;False&nbsp;otherwise</tt></dd>
+</dl>
+<dl><dt><strong>resources_directory</strong></dt>
+</dl>
+<dl><dt><strong>version</strong></dt>
+<dd><tt>Get&nbsp;the&nbsp;Saxon&nbsp;Version.<br>
+&nbsp;<br>
+Getter:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;Saxon&nbsp;version</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PySchemaValidator">class <strong>PySchemaValidator</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;<a href="#PySchemaValidator">PySchemaValidator</a>&nbsp;represents&nbsp;factory&nbsp;for&nbsp;validating&nbsp;instance&nbsp;documents&nbsp;against&nbsp;a&nbsp;schema.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PySchemaValidator-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-clear_parameters"><strong>clear_parameters</strong></a>(...)</dt><dd><tt>clear_parameter(self)<br>
+Clear&nbsp;all&nbsp;parameters&nbsp;set&nbsp;on&nbsp;the&nbsp;processor</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-clear_properties"><strong>clear_properties</strong></a>(...)</dt><dd><tt>clear_parameter(self)<br>
+Clear&nbsp;all&nbsp;properties&nbsp;set&nbsp;on&nbsp;the&nbsp;processor</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-exception_clear"><strong>exception_clear</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-exception_clear">exception_clear</a>(self)<br>
+Clear&nbsp;any&nbsp;exception&nbsp;thrown</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-exception_count"><strong>exception_count</strong></a>(...)</dt><dd><tt>excepton_count(self)<br>
+Get&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;during&nbsp;execution&nbsp;of&nbsp;the&nbsp;schema.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Count&nbsp;of&nbsp;the&nbsp;exceptions&nbsp;thrown&nbsp;during&nbsp;execution</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-exception_occurred"><strong>exception_occurred</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-exception_occurred">exception_occurred</a>(self)<br>
+Check&nbsp;if&nbsp;an&nbsp;exception&nbsp;has&nbsp;occurred&nbsp;internally&nbsp;within&nbsp;Saxon/C<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;True&nbsp;or&nbsp;False&nbsp;if&nbsp;an&nbsp;exception&nbsp;has&nbsp;been&nbsp;reported&nbsp;internally&nbsp;in&nbsp;Saxon/C</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-get_error_code"><strong>get_error_code</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-get_error_code">get_error_code</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;i'th&nbsp;error&nbsp;code&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;error&nbsp;code&nbsp;associated&nbsp;with&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-get_error_message"><strong>get_error_message</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-get_error_message">get_error_message</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;ith&nbsp;error&nbsp;message&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;message&nbsp;of&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-register_schema"><strong>register_schema</strong></a>(...)</dt><dd><tt>Register&nbsp;schema&nbsp;given&nbsp;as&nbsp;file&nbsp;name&nbsp;or&nbsp;schema&nbsp;text.&nbsp;(xsd_text|xsd_file)<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Keyword&nbsp;argument&nbsp;options&nbsp;only&nbsp;one&nbsp;of&nbsp;'xsd_text'&nbsp;or&nbsp;'xsd_file'</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-remove_parameter"><strong>remove_parameter</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-remove_parameter">remove_parameter</a>(self,&nbsp;name)<br>
+Remove&nbsp;the&nbsp;parameter&nbsp;given&nbsp;by&nbsp;name&nbsp;from&nbsp;the&nbsp;<a href="#PySchemaValidator">PySchemaValidator</a>.&nbsp;The&nbsp;parameter&nbsp;will&nbsp;not&nbsp;have&nbsp;any&nbsp;affect&nbsp;on&nbsp;the&nbsp;SchemaValidator&nbsp;if&nbsp;it&nbsp;has&nbsp;not&nbsp;yet&nbsp;been&nbsp;executed<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;schema&nbsp;parameter<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;True&nbsp;if&nbsp;the&nbsp;removal&nbsp;of&nbsp;the&nbsp;parameter&nbsp;has&nbsp;been&nbsp;successful,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-set_cwd"><strong>set_cwd</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-set_cwd">set_cwd</a>(self,&nbsp;cwd)<br>
+Set&nbsp;the&nbsp;current&nbsp;working&nbsp;directory.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cwd&nbsp;(str):&nbsp;current&nbsp;working&nbsp;directory</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-set_lax"><strong>set_lax</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-set_lax">set_lax</a>(self,&nbsp;lax)<br>
+The&nbsp;validation&nbsp;mode&nbsp;may&nbsp;be&nbsp;either&nbsp;strict&nbsp;or&nbsp;lax.&nbsp;<br>
+The&nbsp;default&nbsp;is&nbsp;strict;&nbsp;this&nbsp;method&nbsp;may&nbsp;be&nbsp;called&nbsp;to&nbsp;indicate&nbsp;that&nbsp;lax&nbsp;validation&nbsp;is&nbsp;required.&nbsp;With&nbsp;strict&nbsp;validation,<br>
+validation&nbsp;fails&nbsp;if&nbsp;no&nbsp;element&nbsp;declaration&nbsp;can&nbsp;be&nbsp;located&nbsp;for&nbsp;the&nbsp;outermost&nbsp;element.&nbsp;With&nbsp;lax&nbsp;validation,<br>
+the&nbsp;absence&nbsp;of&nbsp;an&nbsp;element&nbsp;declaration&nbsp;results&nbsp;in&nbsp;the&nbsp;content&nbsp;being&nbsp;considered&nbsp;valid.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lax&nbsp;(boolean):&nbsp;lax&nbsp;True&nbsp;if&nbsp;validation&nbsp;is&nbsp;to&nbsp;be&nbsp;lax,&nbsp;False&nbsp;if&nbsp;it&nbsp;is&nbsp;to&nbsp;be&nbsp;strict</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-set_output_file"><strong>set_output_file</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-set_output_file">set_output_file</a>(self,&nbsp;output_file)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Set&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;output&nbsp;file&nbsp;that&nbsp;will&nbsp;be&nbsp;used&nbsp;by&nbsp;the&nbsp;valida&nbsp;tor.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output_file&nbsp;(str):The&nbsp;output&nbsp;file&nbsp;name&nbsp;for&nbsp;use&nbsp;by&nbsp;the&nbsp;validator</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-set_parameter"><strong>set_parameter</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-set_parameter">set_parameter</a>(self,&nbsp;name,&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;value)<br>
+Set&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;parameter&nbsp;for&nbsp;the&nbsp;Schema&nbsp;validator<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;schema&nbsp;parameter,&nbsp;as&nbsp;a&nbsp;string.&nbsp;For&nbsp;namespaced&nbsp;parameter&nbsp;use&nbsp;the&nbsp;JAXP&nbsp;solution&nbsp;i.e.&nbsp;"{uri}name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>):&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;parameter,&nbsp;or&nbsp;None&nbsp;to&nbsp;clear&nbsp;a&nbsp;previously&nbsp;set&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-set_property"><strong>set_property</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-set_property">set_property</a>(self,&nbsp;name,&nbsp;value)<br>
+Set&nbsp;a&nbsp;property&nbsp;specific&nbsp;to&nbsp;the&nbsp;processor&nbsp;in&nbsp;use.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(str):&nbsp;The&nbsp;value&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PySchemaValidator">PySchemaValidator</a>:&nbsp;set&nbsp;serialization&nbsp;properties&nbsp;(names&nbsp;start&nbsp;with&nbsp;'!'&nbsp;i.e.&nbsp;name&nbsp;"!method"&nbsp;-&gt;&nbsp;"xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'o':outfile&nbsp;name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'dtd':&nbsp;Possible&nbsp;values&nbsp;'on'&nbsp;or&nbsp;'off'&nbsp;to&nbsp;set&nbsp;DTD&nbsp;validation,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'resources':&nbsp;directory&nbsp;to&nbsp;find&nbsp;Saxon&nbsp;data&nbsp;files,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'s':&nbsp;source&nbsp;as&nbsp;file&nbsp;name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'string':&nbsp;Set&nbsp;the&nbsp;source&nbsp;as&nbsp;xml&nbsp;string&nbsp;for&nbsp;validation.&nbsp;Parsing&nbsp;will&nbsp;take&nbsp;place&nbsp;in&nbsp;the&nbsp;validate&nbsp;method<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'report-node':&nbsp;Boolean&nbsp;flag&nbsp;for&nbsp;validation&nbsp;reporting&nbsp;feature.&nbsp;Error&nbsp;validation&nbsp;failures&nbsp;are&nbsp;represented&nbsp;in&nbsp;an&nbsp;XML<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document&nbsp;and&nbsp;returned&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;'report-file':&nbsp;Specifcy&nbsp;value&nbsp;as&nbsp;a&nbsp;file&nbsp;name&nbsp;string.&nbsp;This&nbsp;will&nbsp;switch&nbsp;on&nbsp;the&nbsp;validation&nbsp;reporting&nbsp;feature,&nbsp;which&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;saved&nbsp;to&nbsp;the&nbsp;file&nbsp;in&nbsp;an&nbsp;XML&nbsp;format<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'verbose':&nbsp;boolean&nbsp;value&nbsp;which&nbsp;sets&nbsp;the&nbsp;verbose&nbsp;mode&nbsp;to&nbsp;the&nbsp;output&nbsp;in&nbsp;the&nbsp;terminal.&nbsp;Default&nbsp;is&nbsp;'on'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'element-type':&nbsp;Set&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;required&nbsp;type&nbsp;of&nbsp;the&nbsp;top-lelvel&nbsp;element&nbsp;of&nbsp;the&nbsp;doucment&nbsp;to&nbsp;be&nbsp;validated.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;string&nbsp;should&nbsp;be&nbsp;in&nbsp;the&nbsp;Clark&nbsp;notation&nbsp;{uri}local<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'lax':&nbsp;Boolean&nbsp;to&nbsp;set&nbsp;the&nbsp;validation&nbsp;mode&nbsp;to&nbsp;strict&nbsp;(False)&nbsp;or&nbsp;lax&nbsp;('True')</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-set_source_node"><strong>set_source_node</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-set_source_node">set_source_node</a>(self,&nbsp;source)<br>
+Set&nbsp;the&nbsp;source&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;that&nbsp;will&nbsp;be&nbsp;validated<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;source&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>)&nbsp;:</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-validate"><strong>validate</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-validate">validate</a>(self,&nbsp;**kwds)<br>
+Validate&nbsp;an&nbsp;instance&nbsp;document&nbsp;by&nbsp;a&nbsp;registered&nbsp;schema.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;The&nbsp;possible&nbsp;keyword&nbsp;arguments&nbsp;must&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;follow&nbsp;(file_name|xml_text|xdm_node).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;source&nbsp;file&nbsp;to&nbsp;be&nbsp;validated.&nbsp;Allow&nbsp;None&nbsp;when&nbsp;source&nbsp;document&nbsp;is&nbsp;supplied&nbsp;using&nbsp;the&nbsp;set_source&nbsp;method</tt></dd></dl>
+
+<dl><dt><a name="PySchemaValidator-validate_to_node"><strong>validate_to_node</strong></a>(...)</dt><dd><tt><a href="#PySchemaValidator-validate_to_node">validate_to_node</a>(self,&nbsp;**kwds)<br>
+Validate&nbsp;an&nbsp;instance&nbsp;document&nbsp;by&nbsp;a&nbsp;registered&nbsp;schema.<br>
+&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;The&nbsp;possible&nbsp;keyword&nbsp;arguments&nbsp;must&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;follow&nbsp;(file_name|xml_text|xdm_node).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;source&nbsp;file&nbsp;to&nbsp;be&nbsp;validated.&nbsp;Allow&nbsp;None&nbsp;when&nbsp;source&nbsp;document&nbsp;is&nbsp;supplied&nbsp;using&nbsp;the&nbsp;set_source&nbsp;method<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmNode">PyXdmNode</a>:&nbsp;The&nbsp;validated&nbsp;document&nbsp;returned&nbsp;to&nbsp;the&nbsp;calling&nbsp;program&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmNode">PyXdmNode</a></tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>validation_report</strong></dt>
+<dd><tt>validation_report<br>
+The&nbsp;validation&nbsp;report&nbsp;Property<br>
+&nbsp;<br>
+:PyXdmNode:&nbsp;The&nbsp;Validation&nbsp;report&nbsp;result&nbsp;from&nbsp;the&nbsp;Schema&nbsp;validator</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PyXPathProcessor">class <strong>PyXPathProcessor</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;XPathProcessor&nbsp;represents&nbsp;factory&nbsp;to&nbsp;compile,&nbsp;load&nbsp;and&nbsp;execute&nbsp;the&nbsp;XPath&nbsp;query.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PyXPathProcessor-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-check_exception"><strong>check_exception</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-check_exception">check_exception</a>(self)<br>
+Check&nbsp;for&nbsp;exception&nbsp;thrown&nbsp;and&nbsp;get&nbsp;message&nbsp;of&nbsp;the&nbsp;exception.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Returns&nbsp;the&nbsp;exception&nbsp;message&nbsp;if&nbsp;thrown&nbsp;otherwise&nbsp;return&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-clear_parameters"><strong>clear_parameters</strong></a>(...)</dt><dd><tt>clear_parameter(self)<br>
+Clear&nbsp;all&nbsp;parameters&nbsp;set&nbsp;on&nbsp;the&nbsp;processor</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-clear_properties"><strong>clear_properties</strong></a>(...)</dt><dd><tt>clear_parameter(self)<br>
+Clear&nbsp;all&nbsp;properties&nbsp;set&nbsp;on&nbsp;the&nbsp;processor</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-declare_namespace"><strong>declare_namespace</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-declare_namespace">declare_namespace</a>(self,&nbsp;prefix,&nbsp;uri)<br>
+Declare&nbsp;a&nbsp;namespace&nbsp;binding&nbsp;as&nbsp;part&nbsp;of&nbsp;the&nbsp;static&nbsp;context&nbsp;for&nbsp;XPath&nbsp;expressions&nbsp;compiled&nbsp;using&nbsp;this&nbsp;compiler<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefix&nbsp;(str):&nbsp;The&nbsp;namespace&nbsp;prefix.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;a&nbsp;zero-length&nbsp;string,&nbsp;this&nbsp;method&nbsp;sets&nbsp;the&nbsp;default&nbsp;namespace<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;elements&nbsp;and&nbsp;types.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uri&nbsp;(uri)&nbsp;:&nbsp;The&nbsp;namespace&nbsp;URI.&nbsp;It&nbsp;is&nbsp;possible&nbsp;to&nbsp;specify&nbsp;a&nbsp;zero-length&nbsp;string&nbsp;to&nbsp;"undeclare"&nbsp;a&nbsp;namespace;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;this&nbsp;case&nbsp;the&nbsp;prefix&nbsp;will&nbsp;not&nbsp;be&nbsp;available&nbsp;for&nbsp;use,&nbsp;except&nbsp;in&nbsp;the&nbsp;case&nbsp;where&nbsp;the&nbsp;prefix&nbsp;is&nbsp;also&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zero&nbsp;length&nbsp;string,&nbsp;in&nbsp;which&nbsp;case&nbsp;the&nbsp;absence&nbsp;of&nbsp;a&nbsp;prefix&nbsp;implies&nbsp;that&nbsp;the&nbsp;name&nbsp;is&nbsp;in&nbsp;no&nbsp;namespace.</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-effective_boolean_value"><strong>effective_boolean_value</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-effective_boolean_value">effective_boolean_value</a>(self,&nbsp;xpath_str)<br>
+Evaluate&nbsp;the&nbsp;XPath&nbsp;expression,&nbsp;returning&nbsp;the&nbsp;effective&nbsp;boolean&nbsp;value&nbsp;of&nbsp;the&nbsp;result.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;xpath_str&nbsp;(str):&nbsp;Supplied&nbsp;as&nbsp;a&nbsp;string<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;The&nbsp;result&nbsp;is&nbsp;a&nbsp;boolean&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-evaluate"><strong>evaluate</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-evaluate">evaluate</a>(self,&nbsp;xpath_str)<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;xpath_str&nbsp;(str):&nbsp;The&nbsp;XPath&nbsp;query&nbsp;suplied&nbsp;as&nbsp;a&nbsp;string<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-evaluate_single"><strong>evaluate_single</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-evaluate_single">evaluate_single</a>(self,&nbsp;xpath_str)<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;xpath_str&nbsp;(str):&nbsp;The&nbsp;XPath&nbsp;query&nbsp;suplied&nbsp;as&nbsp;a&nbsp;string<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmItem">PyXdmItem</a>:&nbsp;A&nbsp;single&nbsp;Xdm&nbsp;Item&nbsp;is&nbsp;returned</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-exception_clear"><strong>exception_clear</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-exception_clear">exception_clear</a>(self)<br>
+Clear&nbsp;any&nbsp;exception&nbsp;thrown</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-exception_count"><strong>exception_count</strong></a>(...)</dt><dd><tt>excepton_count(self)<br>
+Get&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;during&nbsp;execution.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Count&nbsp;of&nbsp;the&nbsp;exceptions&nbsp;thrown&nbsp;during&nbsp;execution</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-exception_occurred"><strong>exception_occurred</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-exception_occurred">exception_occurred</a>(self)<br>
+Check&nbsp;if&nbsp;an&nbsp;exception&nbsp;has&nbsp;occurred&nbsp;internally&nbsp;within&nbsp;Saxon/C<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;True&nbsp;or&nbsp;False&nbsp;if&nbsp;an&nbsp;exception&nbsp;has&nbsp;been&nbsp;reported&nbsp;internally&nbsp;in&nbsp;Saxon/C</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-get_error_code"><strong>get_error_code</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-get_error_code">get_error_code</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;i'th&nbsp;error&nbsp;code&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;error&nbsp;code&nbsp;associated&nbsp;with&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-get_error_message"><strong>get_error_message</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-get_error_message">get_error_message</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;ith&nbsp;error&nbsp;message&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;message&nbsp;of&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-import_schema_namespace"><strong>import_schema_namespace</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PyXPathProcessor-remove_parameter"><strong>remove_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-remove_parameter">remove_parameter</a>(self,&nbsp;name)<br>
+Remove&nbsp;the&nbsp;parameter&nbsp;given&nbsp;by&nbsp;name&nbsp;from&nbsp;the&nbsp;<a href="#PyXPathProcessor">PyXPathProcessor</a>.&nbsp;The&nbsp;parameter&nbsp;will&nbsp;not&nbsp;have&nbsp;any&nbsp;affect&nbsp;on&nbsp;the&nbsp;XPath&nbsp;if&nbsp;it&nbsp;has&nbsp;not&nbsp;yet&nbsp;been&nbsp;executed<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;XPath&nbsp;parameter<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;True&nbsp;if&nbsp;the&nbsp;removal&nbsp;of&nbsp;the&nbsp;parameter&nbsp;has&nbsp;been&nbsp;successful,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-set_backwards_compatible"><strong>set_backwards_compatible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PyXPathProcessor-set_base_uri"><strong>set_base_uri</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-set_base_uri">set_base_uri</a>(self,&nbsp;uri)<br>
+Set&nbsp;the&nbsp;static&nbsp;base&nbsp;URI&nbsp;for&nbsp;XPath&nbsp;expressions&nbsp;compiled&nbsp;using&nbsp;this&nbsp;PyXPathCompiler.&nbsp;The&nbsp;base&nbsp;URI&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;static&nbsp;context,<br>
+and&nbsp;is&nbsp;used&nbsp;to&nbsp;resolve&nbsp;any&nbsp;relative&nbsp;URIs&nbsp;appearing&nbsp;within&nbsp;an&nbsp;XPath&nbsp;expression,&nbsp;for&nbsp;example&nbsp;a&nbsp;relative&nbsp;URI&nbsp;passed&nbsp;as&nbsp;an&nbsp;argument<br>
+to&nbsp;the&nbsp;doc()&nbsp;function.&nbsp;If&nbsp;no&nbsp;static&nbsp;base&nbsp;URI&nbsp;is&nbsp;supplied,&nbsp;then&nbsp;the&nbsp;current&nbsp;working&nbsp;directory&nbsp;is&nbsp;used.<br>
+&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uri&nbsp;(str):&nbsp;This&nbsp;string&nbsp;will&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;static&nbsp;base&nbsp;URI</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-set_caching"><strong>set_caching</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PyXPathProcessor-set_context"><strong>set_context</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-set_context">set_context</a>(self,&nbsp;**kwds)<br>
+Set&nbsp;the&nbsp;context&nbsp;for&nbsp;the&nbsp;XPath&nbsp;query<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds&nbsp;:&nbsp;Possible&nbsp;keyword&nbsp;argument&nbsp;file_name&nbsp;(str)&nbsp;or&nbsp;xdm_item&nbsp;(<a href="#PyXdmItem">PyXdmItem</a>)</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-set_cwd"><strong>set_cwd</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-set_cwd">set_cwd</a>(self,&nbsp;cwd)<br>
+Set&nbsp;the&nbsp;current&nbsp;working&nbsp;directory.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cwd&nbsp;(str):&nbsp;current&nbsp;working&nbsp;directory</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-set_parameter"><strong>set_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-set_parameter">set_parameter</a>(self,&nbsp;name,&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;value)<br>
+Set&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;XPath&nbsp;parameter<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;XPath&nbsp;parameter,&nbsp;as&nbsp;a&nbsp;string.&nbsp;For&nbsp;namespaced&nbsp;parameter&nbsp;use&nbsp;the&nbsp;JAXP&nbsp;solution&nbsp;i.e.&nbsp;"{uri}name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>):&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;query&nbsp;parameter,&nbsp;or&nbsp;None&nbsp;to&nbsp;clear&nbsp;a&nbsp;previously&nbsp;set&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="PyXPathProcessor-set_property"><strong>set_property</strong></a>(...)</dt><dd><tt><a href="#PyXPathProcessor-set_property">set_property</a>(self,&nbsp;name,&nbsp;value)<br>
+Set&nbsp;a&nbsp;property&nbsp;specific&nbsp;to&nbsp;the&nbsp;processor&nbsp;in&nbsp;use.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(str):&nbsp;The&nbsp;value&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXPathProcessor">PyXPathProcessor</a>:&nbsp;set&nbsp;serialization&nbsp;properties&nbsp;(names&nbsp;start&nbsp;with&nbsp;'!'&nbsp;i.e.&nbsp;name&nbsp;"!method"&nbsp;-&gt;&nbsp;"xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'resources':&nbsp;directory&nbsp;to&nbsp;find&nbsp;Saxon&nbsp;data&nbsp;files,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'s':&nbsp;source&nbsp;as&nbsp;file&nbsp;name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'extc':&nbsp;REgister&nbsp;native&nbsp;library&nbsp;to&nbsp;be&nbsp;used&nbsp;with&nbsp;extension&nbsp;functions</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PyXQueryProcessor">class <strong>PyXQueryProcessor</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;<a href="#PyXQueryProcessor">PyXQueryProcessor</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;represents&nbsp;factory&nbsp;to&nbsp;compile,&nbsp;load&nbsp;and&nbsp;execute&nbsp;queries.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PyXQueryProcessor-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-check_exception"><strong>check_exception</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-check_exception">check_exception</a>(self)<br>
+Check&nbsp;for&nbsp;exception&nbsp;thrown&nbsp;and&nbsp;get&nbsp;message&nbsp;of&nbsp;the&nbsp;exception.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Returns&nbsp;the&nbsp;exception&nbsp;message&nbsp;if&nbsp;thrown&nbsp;otherwise&nbsp;return&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-clear_parameters"><strong>clear_parameters</strong></a>(...)</dt><dd><tt>clear_parameter(self)<br>
+Clear&nbsp;all&nbsp;parameters&nbsp;set&nbsp;on&nbsp;the&nbsp;processor</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-clear_properties"><strong>clear_properties</strong></a>(...)</dt><dd><tt>clear_parameter(self)<br>
+Clear&nbsp;all&nbsp;properties&nbsp;set&nbsp;on&nbsp;the&nbsp;processor</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-declare_namespace"><strong>declare_namespace</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-declare_namespace">declare_namespace</a>(self,&nbsp;prefix,&nbsp;uri)<br>
+Declare&nbsp;a&nbsp;namespace&nbsp;binding&nbsp;part&nbsp;of&nbsp;the&nbsp;static&nbsp;context&nbsp;for&nbsp;queries&nbsp;compiled&nbsp;using&nbsp;this.<br>
+This&nbsp;binding&nbsp;may&nbsp;be&nbsp;overridden&nbsp;by&nbsp;a&nbsp;binding&nbsp;that&nbsp;appears&nbsp;in&nbsp;the&nbsp;query&nbsp;prolog.<br>
+The&nbsp;namespace&nbsp;binding&nbsp;will&nbsp;form&nbsp;part&nbsp;of&nbsp;the&nbsp;static&nbsp;context&nbsp;of&nbsp;the&nbsp;query,&nbsp;but&nbsp;it&nbsp;will<br>
+not&nbsp;be&nbsp;copied&nbsp;into&nbsp;result&nbsp;trees&nbsp;unless&nbsp;the&nbsp;prefix&nbsp;is&nbsp;actually&nbsp;used&nbsp;in&nbsp;an&nbsp;element&nbsp;or&nbsp;attribute&nbsp;name.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefix&nbsp;(str):&nbsp;The&nbsp;namespace&nbsp;prefix.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;a&nbsp;zero-length&nbsp;string,&nbsp;this&nbsp;method&nbsp;sets&nbsp;the&nbsp;default&nbsp;namespace&nbsp;for&nbsp;elements&nbsp;and&nbsp;types.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uri&nbsp;(uri)&nbsp;:&nbsp;The&nbsp;namespace&nbsp;URI.&nbsp;It&nbsp;is&nbsp;possible&nbsp;to&nbsp;specify&nbsp;a&nbsp;zero-length&nbsp;string&nbsp;to&nbsp;"undeclare"&nbsp;a&nbsp;namespace;&nbsp;in&nbsp;this&nbsp;case&nbsp;the&nbsp;prefix&nbsp;will&nbsp;not&nbsp;be&nbsp;available&nbsp;for&nbsp;use,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;except&nbsp;in&nbsp;the&nbsp;case&nbsp;where&nbsp;the&nbsp;prefix&nbsp;is&nbsp;also&nbsp;a&nbsp;zero&nbsp;length&nbsp;string,&nbsp;in&nbsp;which&nbsp;case&nbsp;the&nbsp;absence&nbsp;of&nbsp;a&nbsp;prefix&nbsp;implies&nbsp;that&nbsp;the&nbsp;name&nbsp;is&nbsp;in&nbsp;no&nbsp;namespace.</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-exception_clear"><strong>exception_clear</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-exception_clear">exception_clear</a>(self)<br>
+Clear&nbsp;any&nbsp;exception&nbsp;thrown</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-exception_count"><strong>exception_count</strong></a>(...)</dt><dd><tt>excepton_count(self)<br>
+Get&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;during&nbsp;execution.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Count&nbsp;of&nbsp;the&nbsp;exceptions&nbsp;thrown&nbsp;during&nbsp;execution</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-exception_occurred"><strong>exception_occurred</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-exception_occurred">exception_occurred</a>(self)<br>
+Checks&nbsp;for&nbsp;pending&nbsp;exceptions&nbsp;without&nbsp;creating&nbsp;a&nbsp;local&nbsp;reference&nbsp;to&nbsp;the&nbsp;exception&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;True&nbsp;when&nbsp;there&nbsp;is&nbsp;a&nbsp;pending&nbsp;exception;&nbsp;otherwise&nbsp;return&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-get_error_code"><strong>get_error_code</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-get_error_code">get_error_code</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;i'th&nbsp;error&nbsp;code&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;error&nbsp;code&nbsp;associated&nbsp;with&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-get_error_message"><strong>get_error_message</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-get_error_message">get_error_message</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;ith&nbsp;error&nbsp;message&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;message&nbsp;of&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-remove_parameter"><strong>remove_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-remove_parameter">remove_parameter</a>(self,&nbsp;name)<br>
+Remove&nbsp;the&nbsp;parameter&nbsp;given&nbsp;by&nbsp;name&nbsp;from&nbsp;the&nbsp;<a href="#PyXQueryProcessor">PyXQueryProcessor</a>.&nbsp;The&nbsp;parameter&nbsp;will&nbsp;not&nbsp;have&nbsp;any&nbsp;affect&nbsp;on&nbsp;the&nbsp;query&nbsp;if&nbsp;it&nbsp;has&nbsp;not&nbsp;yet&nbsp;been&nbsp;executed<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;query&nbsp;parameter<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;True&nbsp;if&nbsp;the&nbsp;removal&nbsp;of&nbsp;the&nbsp;parameter&nbsp;has&nbsp;been&nbsp;successful,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-run_query_to_file"><strong>run_query_to_file</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-run_query_to_file">run_query_to_file</a>(self,&nbsp;**kwds)<br>
+Execute&nbsp;query&nbsp;with&nbsp;the&nbsp;result&nbsp;saved&nbsp;to&nbsp;file<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Keyword&nbsp;arguments&nbsp;with&nbsp;the&nbsp;possible&nbsp;options&nbsp;input_file_name&nbsp;(str)&nbsp;or&nbsp;input_xdm_item&nbsp;(<a href="#PyXdmItem">PyXdmItem</a>).&nbsp;The&nbsp;Query&nbsp;can&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supplied&nbsp;with&nbsp;the&nbsp;arguments&nbsp;'query_file'&nbsp;or&nbsp;'query_text',&nbsp;which&nbsp;are&nbsp;of&nbsp;type&nbsp;str.&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;output&nbsp;file&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specified&nbsp;as&nbsp;the&nbsp;argument&nbsp;output_file_name.</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-run_query_to_string"><strong>run_query_to_string</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-run_query_to_string">run_query_to_string</a>(self,&nbsp;**kwds)<br>
+Execute&nbsp;query&nbsp;and&nbsp;output&nbsp;result&nbsp;as&nbsp;a&nbsp;string&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Keyword&nbsp;arguments&nbsp;with&nbsp;the&nbsp;possible&nbsp;options&nbsp;input_file_name&nbsp;(str)&nbsp;or&nbsp;input_xdm_item&nbsp;(<a href="#PyXdmItem">PyXdmItem</a>).&nbsp;Possible&nbsp;to&nbsp;supply<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query&nbsp;with&nbsp;the&nbsp;arguments&nbsp;'query_file'&nbsp;or&nbsp;'query_text',&nbsp;which&nbsp;are&nbsp;of&nbsp;type&nbsp;str.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Output&nbsp;result&nbsp;as&nbsp;a&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-run_query_to_value"><strong>run_query_to_value</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-run_query_to_value">run_query_to_value</a>(self,&nbsp;**kwds)<br>
+Execute&nbsp;query&nbsp;and&nbsp;output&nbsp;result&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Keyword&nbsp;arguments&nbsp;with&nbsp;the&nbsp;possible&nbsp;options&nbsp;input_file_name&nbsp;(str)&nbsp;or&nbsp;input_xdm_item&nbsp;(<a href="#PyXdmItem">PyXdmItem</a>).&nbsp;Possible&nbsp;to&nbsp;supply<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query&nbsp;with&nbsp;the&nbsp;arguments&nbsp;'query_file'&nbsp;or&nbsp;'query_text',&nbsp;which&nbsp;are&nbsp;of&nbsp;type&nbsp;str.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Output&nbsp;result&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a></tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-set_context"><strong>set_context</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-set_context">set_context</a>(self,&nbsp;**kwds)<br>
+Set&nbsp;the&nbsp;initial&nbsp;context&nbsp;for&nbsp;the&nbsp;query<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds&nbsp;:&nbsp;Possible&nbsp;keyword&nbsp;argument&nbsp;file_name&nbsp;(str)&nbsp;or&nbsp;xdm_item&nbsp;(<a href="#PyXdmItem">PyXdmItem</a>)</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-set_cwd"><strong>set_cwd</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-set_cwd">set_cwd</a>(self,&nbsp;cwd)<br>
+Set&nbsp;the&nbsp;current&nbsp;working&nbsp;directory.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cwd&nbsp;(str):&nbsp;current&nbsp;working&nbsp;directory</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-set_output_file"><strong>set_output_file</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-set_output_file">set_output_file</a>(self,&nbsp;output_file)<br>
+Set&nbsp;the&nbsp;output&nbsp;file&nbsp;where&nbsp;the&nbsp;result&nbsp;is&nbsp;sent<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output_file&nbsp;(str):&nbsp;Name&nbsp;of&nbsp;the&nbsp;output&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-set_parameter"><strong>set_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-set_parameter">set_parameter</a>(self,&nbsp;name,&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;value)<br>
+Set&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;query&nbsp;parameter<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;stylesheet&nbsp;parameter,&nbsp;as&nbsp;a&nbsp;string.&nbsp;For&nbsp;namespaced&nbsp;parameter&nbsp;use&nbsp;the&nbsp;JAXP&nbsp;solution&nbsp;i.e.&nbsp;"{uri}name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>):&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;query&nbsp;parameter,&nbsp;or&nbsp;None&nbsp;to&nbsp;clear&nbsp;a&nbsp;previously&nbsp;set&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-set_property"><strong>set_property</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-set_property">set_property</a>(self,&nbsp;name,&nbsp;value)<br>
+Set&nbsp;a&nbsp;property&nbsp;specific&nbsp;to&nbsp;the&nbsp;processor&nbsp;in&nbsp;use.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(str):&nbsp;The&nbsp;value&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXQueryProcessor">PyXQueryProcessor</a>:&nbsp;set&nbsp;serialization&nbsp;properties&nbsp;(names&nbsp;start&nbsp;with&nbsp;'!'&nbsp;i.e.&nbsp;name&nbsp;"!method"&nbsp;-&gt;&nbsp;"xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'o':outfile&nbsp;name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'dtd':&nbsp;Possible&nbsp;values&nbsp;'on'&nbsp;or&nbsp;'off'&nbsp;to&nbsp;set&nbsp;DTD&nbsp;validation,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'resources':&nbsp;directory&nbsp;to&nbsp;find&nbsp;Saxon&nbsp;data&nbsp;files,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'s':&nbsp;source&nbsp;as&nbsp;file&nbsp;name,</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-set_query_base_uri"><strong>set_query_base_uri</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-set_query_base_uri">set_query_base_uri</a>(self,&nbsp;base_uri)<br>
+Set&nbsp;the&nbsp;static&nbsp;base&nbsp;query&nbsp;for&nbsp;the&nbsp;query&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;base_uri&nbsp;(str):&nbsp;The&nbsp;static&nbsp;base&nbsp;URI;&nbsp;or&nbsp;None&nbsp;to&nbsp;indicate&nbsp;that&nbsp;no&nbsp;base&nbsp;URI&nbsp;is&nbsp;available</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-set_query_content"><strong>set_query_content</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-set_query_content">set_query_content</a>(self)<br>
+Set&nbsp;the&nbsp;query&nbsp;to&nbsp;be&nbsp;executed&nbsp;as&nbsp;a&nbsp;string<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;content&nbsp;(str):&nbsp;The&nbsp;query&nbsp;content&nbsp;suplied&nbsp;as&nbsp;a&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-set_query_file"><strong>set_query_file</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-set_query_file">set_query_file</a>(self,&nbsp;file_name)<br>
+Set&nbsp;the&nbsp;query&nbsp;to&nbsp;be&nbsp;executed&nbsp;as&nbsp;a&nbsp;file<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;file_name&nbsp;(str):&nbsp;The&nbsp;file&nbsp;name&nbsp;for&nbsp;the&nbsp;query</tt></dd></dl>
+
+<dl><dt><a name="PyXQueryProcessor-set_updating"><strong>set_updating</strong></a>(...)</dt><dd><tt><a href="#PyXQueryProcessor-set_updating">set_updating</a>(self,&nbsp;updating)<br>
+Say&nbsp;whether&nbsp;the&nbsp;query&nbsp;is&nbsp;allowed&nbsp;to&nbsp;be&nbsp;updating.&nbsp;XQuery&nbsp;update&nbsp;syntax&nbsp;will&nbsp;be&nbsp;rejected&nbsp;during&nbsp;query&nbsp;compilation&nbsp;unless&nbsp;this<br>
+flag&nbsp;is&nbsp;set.&nbsp;XQuery&nbsp;Update&nbsp;is&nbsp;supported&nbsp;only&nbsp;under&nbsp;Saxon-EE/C.<br>
+&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;updating&nbsp;(bool):&nbsp;true&nbsp;if&nbsp;the&nbsp;query&nbsp;is&nbsp;allowed&nbsp;to&nbsp;use&nbsp;the&nbsp;XQuery&nbsp;Update&nbsp;facility&nbsp;(requires&nbsp;Saxon-EE/C).&nbsp;If&nbsp;set&nbsp;to&nbsp;false,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;query&nbsp;must&nbsp;not&nbsp;be&nbsp;an&nbsp;updating&nbsp;query.&nbsp;If&nbsp;set&nbsp;to&nbsp;true,&nbsp;it&nbsp;may&nbsp;be&nbsp;either&nbsp;an&nbsp;updating&nbsp;or&nbsp;a&nbsp;non-updating&nbsp;query.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PyXdmAtomicValue">class <strong>PyXdmAtomicValue</strong></a>(<a href="saxonc.html#PyXdmItem">PyXdmItem</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;class&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>&nbsp;represents&nbsp;an&nbsp;item&nbsp;in&nbsp;an&nbsp;Xath&nbsp;sequence&nbsp;that&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value.&nbsp;The&nbsp;value&nbsp;may&nbsp;belong&nbsp;to&nbsp;any&nbsp;of&nbsp;the<br>
+19&nbsp;primitive&nbsp;types&nbsp;defined&nbsp;in&nbsp;XML&nbsp;Schema,&nbsp;or&nbsp;to&nbsp;a&nbsp;type&nbsp;derived&nbsp;from&nbsp;these&nbsp;primitive&nbsp;types,&nbsp;or&nbsp;the&nbsp;XPath&nbsp;type&nbsp;xs:untypedAtomic.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="saxonc.html#PyXdmAtomicValue">PyXdmAtomicValue</a></dd>
+<dd><a href="saxonc.html#PyXdmItem">PyXdmItem</a></dd>
+<dd><a href="saxonc.html#PyXdmValue">PyXdmValue</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="PyXdmAtomicValue-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PyXdmAtomicValue-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>___repr__</tt></dd></dl>
+
+<dl><dt><a name="PyXdmAtomicValue-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt><a href="#PyXdmAtomicValue-__str__">__str__</a>(self)<br>
+The&nbsp;string&nbsp;value&nbsp;of&nbsp;the&nbsp;node&nbsp;as&nbsp;defined&nbsp;in&nbsp;the&nbsp;XPath&nbsp;data&nbsp;model<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;String&nbsp;value&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>boolean_value</strong></dt>
+<dd><tt>Property&nbsp;which&nbsp;returns&nbsp;the&nbsp;boolean&nbsp;value&nbsp;of&nbsp;the&nbsp;PyXdmAtomicValue<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;boolean&nbsp;value.</tt></dd>
+</dl>
+<dl><dt><strong>double_value</strong></dt>
+<dd><tt>Property&nbsp;which&nbsp;is&nbsp;returns&nbsp;the&nbsp;double&nbsp;value&nbsp;of&nbsp;the&nbsp;PyXdmAtomicValue&nbsp;if&nbsp;it&nbsp;can&nbsp;be&nbsp;converted.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;double:&nbsp;Double&nbsp;value&nbsp;of&nbsp;the&nbsp;Xdm&nbsp;object</tt></dd>
+</dl>
+<dl><dt><strong>head</strong></dt>
+<dd><tt>head(self)<br>
+Property&nbsp;to&nbsp;get&nbsp;the&nbsp;first&nbsp;item&nbsp;in&nbsp;the&nbsp;sequence.&nbsp;This&nbsp;would&nbsp;be&nbsp;the&nbsp;PyXdmAtomicValue&nbsp;itself&nbsp;as&nbsp;there&nbsp;is&nbsp;only&nbsp;one&nbsp;item&nbsp;in&nbsp;the&nbsp;sequence<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PyXdmAtomicValue:&nbsp;The&nbsp;PyXdmAtomic&nbsp;or&nbsp;None&nbsp;if&nbsp;the&nbsp;sequence&nbsp;is&nbsp;empty</tt></dd>
+</dl>
+<dl><dt><strong>integer_value</strong></dt>
+<dd><tt>Property&nbsp;which&nbsp;is&nbsp;returns&nbsp;the&nbsp;int&nbsp;value&nbsp;of&nbsp;the&nbsp;PyXdmAtomicValue&nbsp;if&nbsp;it&nbsp;can&nbsp;be&nbsp;converted.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Int&nbsp;value&nbsp;of&nbsp;the&nbsp;Xdm&nbsp;object</tt></dd>
+</dl>
+<dl><dt><strong>primitive_type_name</strong></dt>
+<dd><tt>get_primitive_type_name()<br>
+Property&nbsp;-&nbsp;Get&nbsp;the&nbsp;primitive&nbsp;type&nbsp;name&nbsp;of&nbsp;the&nbsp;PyXdmAtomicValue<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;String&nbsp;of&nbsp;the&nbsp;primitive&nbsp;type&nbsp;name</tt></dd>
+</dl>
+<dl><dt><strong>string_value</strong></dt>
+<dd><tt>Property&nbsp;which&nbsp;returns&nbsp;the&nbsp;string&nbsp;value&nbsp;of&nbsp;the&nbsp;PyXdmAtomicValue<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;String&nbsp;value&nbsp;of&nbsp;the&nbsp;Xdm&nbsp;object</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="saxonc.html#PyXdmItem">PyXdmItem</a>:<br>
+<dl><dt><a name="PyXdmAtomicValue-get_atomic_value"><strong>get_atomic_value</strong></a>(...)</dt><dd><tt><a href="#PyXdmAtomicValue-get_atomic_value">get_atomic_value</a>(self)<br>
+Get&nbsp;the&nbsp;subclass&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>&nbsp;for&nbsp;this&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;current&nbsp;<a href="builtins.html#object">object</a>&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>:&nbsp;Subclass&nbsp;this&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>&nbsp;or&nbsp;error</tt></dd></dl>
+
+<dl><dt><a name="PyXdmAtomicValue-get_node_value"><strong>get_node_value</strong></a>(...)</dt><dd><tt><a href="#PyXdmAtomicValue-get_node_value">get_node_value</a>(self)<br>
+Get&nbsp;the&nbsp;subclass&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;for&nbsp;this&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;current&nbsp;<a href="builtins.html#object">object</a>&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmNode">PyXdmNode</a>:&nbsp;Subclass&nbsp;this&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;or&nbsp;error</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="saxonc.html#PyXdmItem">PyXdmItem</a>:<br>
+<dl><dt><strong>is_atomic</strong></dt>
+<dd><tt>is_atomic(self)<br>
+Property&nbsp;to&nbsp;check&nbsp;if&nbsp;the&nbsp;current&nbsp;PyXdmItem&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;Check&nbsp;of&nbsp;is&nbsp;atomic&nbsp;value</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="saxonc.html#PyXdmValue">PyXdmValue</a>:<br>
+<dl><dt><a name="PyXdmAtomicValue-add_xdm_item"><strong>add_xdm_item</strong></a>(...)</dt><dd><tt>add_xdm_tem(self,&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;value)<br>
+Add&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;to&nbsp;the&nbsp;Xdm&nbsp;sequence<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(<a href="#PyXdmItem">PyXdmItem</a>):&nbsp;The&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="PyXdmAtomicValue-item_at"><strong>item_at</strong></a>(...)</dt><dd><tt><a href="#PyXdmAtomicValue-item_at">item_at</a>(self,&nbsp;index)<br>
+Get&nbsp;the&nbsp;n'th&nbsp;item&nbsp;in&nbsp;the&nbsp;value,&nbsp;counting&nbsp;from&nbsp;zero.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;the&nbsp;index&nbsp;of&nbsp;the&nbsp;item&nbsp;required.&nbsp;Counting&nbsp;from&nbsp;zero<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmItem">PyXdmItem</a>:&nbsp;Get&nbsp;the&nbsp;item&nbsp;indicated&nbsp;at&nbsp;the&nbsp;index.&nbsp;If&nbsp;the&nbsp;item&nbsp;does&nbsp;not&nbsp;exist&nbsp;return&nbsp;None.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="saxonc.html#PyXdmValue">PyXdmValue</a>:<br>
+<dl><dt><strong>size</strong></dt>
+<dd><tt>size(self)<br>
+Property&nbsp;-&nbsp;Get&nbsp;the&nbsp;number&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;sequence<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;count&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;sequence</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PyXdmItem">class <strong>PyXdmItem</strong></a>(<a href="saxonc.html#PyXdmValue">PyXdmValue</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Value&nbsp;in&nbsp;the&nbsp;XDM&nbsp;data&nbsp;model.&nbsp;A&nbsp;value&nbsp;is&nbsp;a&nbsp;sequence&nbsp;of&nbsp;zero&nbsp;or&nbsp;more&nbsp;items,&nbsp;each&nbsp;item&nbsp;being&nbsp;either&nbsp;an&nbsp;atomic&nbsp;value&nbsp;or&nbsp;a&nbsp;node.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="saxonc.html#PyXdmItem">PyXdmItem</a></dd>
+<dd><a href="saxonc.html#PyXdmValue">PyXdmValue</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="PyXdmItem-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PyXdmItem-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="PyXdmItem-__str__"><strong>__str__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="PyXdmItem-get_atomic_value"><strong>get_atomic_value</strong></a>(...)</dt><dd><tt><a href="#PyXdmItem-get_atomic_value">get_atomic_value</a>(self)<br>
+Get&nbsp;the&nbsp;subclass&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>&nbsp;for&nbsp;this&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;current&nbsp;<a href="builtins.html#object">object</a>&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>:&nbsp;Subclass&nbsp;this&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>&nbsp;or&nbsp;error</tt></dd></dl>
+
+<dl><dt><a name="PyXdmItem-get_node_value"><strong>get_node_value</strong></a>(...)</dt><dd><tt><a href="#PyXdmItem-get_node_value">get_node_value</a>(self)<br>
+Get&nbsp;the&nbsp;subclass&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;for&nbsp;this&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;current&nbsp;<a href="builtins.html#object">object</a>&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmNode">PyXdmNode</a>:&nbsp;Subclass&nbsp;this&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;or&nbsp;error</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>head</strong></dt>
+<dd><tt>head(self)<br>
+Property&nbsp;to&nbsp;get&nbsp;the&nbsp;first&nbsp;item&nbsp;in&nbsp;the&nbsp;sequence.&nbsp;This&nbsp;would&nbsp;be&nbsp;the&nbsp;PyXdmItem&nbsp;itself&nbsp;as&nbsp;there&nbsp;is&nbsp;only&nbsp;one&nbsp;item&nbsp;in&nbsp;the&nbsp;sequence<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PyXdmItem:&nbsp;The&nbsp;PyXdmItem&nbsp;or&nbsp;None&nbsp;if&nbsp;the&nbsp;sequence&nbsp;is&nbsp;empty</tt></dd>
+</dl>
+<dl><dt><strong>is_atomic</strong></dt>
+<dd><tt>is_atomic(self)<br>
+Property&nbsp;to&nbsp;check&nbsp;if&nbsp;the&nbsp;current&nbsp;PyXdmItem&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;Check&nbsp;of&nbsp;is&nbsp;atomic&nbsp;value</tt></dd>
+</dl>
+<dl><dt><strong>string_value</strong></dt>
+<dd><tt>string_value(self)<br>
+Property&nbsp;to&nbsp;get&nbsp;the&nbsp;the&nbsp;strign&nbsp;value&nbsp;of&nbsp;the&nbsp;XdmItem</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="saxonc.html#PyXdmValue">PyXdmValue</a>:<br>
+<dl><dt><a name="PyXdmItem-add_xdm_item"><strong>add_xdm_item</strong></a>(...)</dt><dd><tt>add_xdm_tem(self,&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;value)<br>
+Add&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;to&nbsp;the&nbsp;Xdm&nbsp;sequence<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(<a href="#PyXdmItem">PyXdmItem</a>):&nbsp;The&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="PyXdmItem-item_at"><strong>item_at</strong></a>(...)</dt><dd><tt><a href="#PyXdmItem-item_at">item_at</a>(self,&nbsp;index)<br>
+Get&nbsp;the&nbsp;n'th&nbsp;item&nbsp;in&nbsp;the&nbsp;value,&nbsp;counting&nbsp;from&nbsp;zero.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;the&nbsp;index&nbsp;of&nbsp;the&nbsp;item&nbsp;required.&nbsp;Counting&nbsp;from&nbsp;zero<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmItem">PyXdmItem</a>:&nbsp;Get&nbsp;the&nbsp;item&nbsp;indicated&nbsp;at&nbsp;the&nbsp;index.&nbsp;If&nbsp;the&nbsp;item&nbsp;does&nbsp;not&nbsp;exist&nbsp;return&nbsp;None.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="saxonc.html#PyXdmValue">PyXdmValue</a>:<br>
+<dl><dt><strong>size</strong></dt>
+<dd><tt>size(self)<br>
+Property&nbsp;-&nbsp;Get&nbsp;the&nbsp;number&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;sequence<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;count&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;sequence</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PyXdmNode">class <strong>PyXdmNode</strong></a>(<a href="saxonc.html#PyXdmItem">PyXdmItem</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Value&nbsp;in&nbsp;the&nbsp;XDM&nbsp;data&nbsp;model.&nbsp;A&nbsp;value&nbsp;is&nbsp;a&nbsp;sequence&nbsp;of&nbsp;zero&nbsp;or&nbsp;more&nbsp;items,&nbsp;each&nbsp;item&nbsp;being&nbsp;either&nbsp;an&nbsp;atomic&nbsp;value&nbsp;or&nbsp;a&nbsp;node.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="saxonc.html#PyXdmNode">PyXdmNode</a></dd>
+<dd><a href="saxonc.html#PyXdmItem">PyXdmItem</a></dd>
+<dd><a href="saxonc.html#PyXdmValue">PyXdmValue</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="PyXdmNode-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PyXdmNode-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>___repr__</tt></dd></dl>
+
+<dl><dt><a name="PyXdmNode-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt><a href="#PyXdmNode-__str__">__str__</a>(self)<br>
+The&nbsp;string&nbsp;value&nbsp;of&nbsp;the&nbsp;node&nbsp;as&nbsp;defined&nbsp;in&nbsp;the&nbsp;XPath&nbsp;data&nbsp;model<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;String&nbsp;value&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="PyXdmNode-get_attribute_value"><strong>get_attribute_value</strong></a>(...)</dt><dd><tt>getAttribute_value(self,&nbsp;name)<br>
+The&nbsp;name&nbsp;of&nbsp;the&nbsp;required&nbsp;attribute<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmNode-name">name</a>(str):&nbsp;the&nbsp;eqname&nbsp;of&nbsp;the&nbsp;required&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="PyXdmNode-get_parent"><strong>get_parent</strong></a>(...)</dt><dd><tt><a href="#PyXdmNode-get_parent">get_parent</a>(self)<br>
+Get&nbsp;the&nbsp;current&nbsp;node's&nbsp;parent<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmNode">PyXdmNode</a>:&nbsp;The&nbsp;parent&nbsp;node&nbsp;as&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;<a href="builtins.html#object">object</a></tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>attribute_count</strong></dt>
+<dd><tt>attribute_count(self)<br>
+Property&nbsp;to&nbsp;get&nbsp;the&nbsp;count&nbsp;of&nbsp;attribute&nbsp;nodes&nbsp;on&nbsp;this&nbsp;XdmNode&nbsp;object.&nbsp;If&nbsp;this&nbsp;current&nbsp;node&nbsp;is&nbsp;not&nbsp;an&nbsp;element&nbsp;node&nbsp;then&nbsp;return&nbsp;0<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Count&nbsp;of&nbsp;attribute&nbsp;nodes</tt></dd>
+</dl>
+<dl><dt><strong>attributes</strong></dt>
+<dd><tt>attribute_nodes(self)<br>
+Property&nbsp;to&nbsp;get&nbsp;the&nbsp;attribute&nbsp;nodes&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;PyXdmNode&nbsp;objects<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list[PyXdmNode]:&nbsp;List&nbsp;of&nbsp;PyXdmNode&nbsp;objects</tt></dd>
+</dl>
+<dl><dt><strong>base_uri</strong></dt>
+<dd><tt>base_uri(self)<br>
+Base&nbsp;uri&nbsp;Property.&nbsp;Get&nbsp;the&nbsp;Base&nbsp;URI&nbsp;for&nbsp;the&nbsp;node,&nbsp;that&nbsp;is,&nbsp;the&nbsp;URI&nbsp;used&nbsp;for&nbsp;resolving&nbsp;a&nbsp;relative&nbsp;URI&nbsp;contained&nbsp;in&nbsp;the&nbsp;node.<br>
+This&nbsp;will&nbsp;be&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;System&nbsp;ID&nbsp;unless&nbsp;xml:base&nbsp;has&nbsp;been&nbsp;used.&nbsp;Where&nbsp;the&nbsp;node&nbsp;does&nbsp;not&nbsp;have&nbsp;a&nbsp;base&nbsp;URI&nbsp;of&nbsp;its&nbsp;own,<br>
+the&nbsp;base&nbsp;URI&nbsp;of&nbsp;its&nbsp;parent&nbsp;node&nbsp;is&nbsp;returned.<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;String&nbsp;value&nbsp;of&nbsp;the&nbsp;base&nbsp;uri&nbsp;for&nbsp;this&nbsp;node.&nbsp;This&nbsp;may&nbsp;be&nbsp;null&nbsp;if&nbsp;the&nbsp;base&nbsp;URI&nbsp;is&nbsp;unknown,&nbsp;including&nbsp;the&nbsp;case<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;node&nbsp;has&nbsp;no&nbsp;parent.</tt></dd>
+</dl>
+<dl><dt><strong>children</strong></dt>
+<dd><tt>children(self)<br>
+Property&nbsp;to&nbsp;get&nbsp;children&nbsp;of&nbsp;this&nbsp;current&nbsp;node.&nbsp;List&nbsp;of&nbsp;child&nbsp;nodes<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list[PyXdmNode]:&nbsp;List&nbsp;of&nbsp;PyXdmNode&nbsp;objects</tt></dd>
+</dl>
+<dl><dt><strong>head</strong></dt>
+<dd><tt>head(self)<br>
+Property&nbsp;to&nbsp;get&nbsp;the&nbsp;first&nbsp;item&nbsp;in&nbsp;the&nbsp;sequence.&nbsp;This&nbsp;would&nbsp;be&nbsp;the&nbsp;PyXdmNode&nbsp;itself&nbsp;as&nbsp;there&nbsp;is&nbsp;only&nbsp;one&nbsp;item&nbsp;in&nbsp;the&nbsp;sequence<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PyXdmItem:&nbsp;The&nbsp;PyXdmItem&nbsp;or&nbsp;None&nbsp;if&nbsp;the&nbsp;sequence&nbsp;is&nbsp;empty</tt></dd>
+</dl>
+<dl><dt><strong>name</strong></dt>
+<dd><tt>name(self)<br>
+Get&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;node,&nbsp;as&nbsp;a&nbsp;string&nbsp;in&nbsp;the&nbsp;form&nbsp;of&nbsp;a&nbsp;EQName<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;node.&nbsp;In&nbsp;the&nbsp;case&nbsp;of&nbsp;unnamed&nbsp;nodes&nbsp;(for&nbsp;example,&nbsp;text&nbsp;and&nbsp;comment&nbsp;nodes)&nbsp;return&nbsp;None</tt></dd>
+</dl>
+<dl><dt><strong>node_kind</strong></dt>
+<dd><tt>node_kind(self)<br>
+Node&nbsp;Kind&nbsp;property.&nbsp;This&nbsp;will&nbsp;be&nbsp;a&nbsp;value&nbsp;such&nbsp;as&nbsp;{@link&nbsp;net.sf.saxon.type.Type#ELEMENT}&nbsp;or&nbsp;{@link&nbsp;net.sf.saxon.type.Type#ATTRIBUTE}.<br>
+There&nbsp;are&nbsp;seven&nbsp;kinds&nbsp;of&nbsp;node:&nbsp;documents,&nbsp;elements,&nbsp;attributes,&nbsp;text,&nbsp;comments,&nbsp;processing-instructions,&nbsp;and&nbsp;namespaces.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;an&nbsp;integer&nbsp;identifying&nbsp;the&nbsp;kind&nbsp;of&nbsp;node.&nbsp;These&nbsp;integer&nbsp;values&nbsp;are&nbsp;the&nbsp;same&nbsp;as&nbsp;those&nbsp;used&nbsp;in&nbsp;the&nbsp;DOM</tt></dd>
+</dl>
+<dl><dt><strong>node_kind_str</strong></dt>
+<dd><tt>node_kind(self)<br>
+Node&nbsp;Kind&nbsp;property&nbsp;string.&nbsp;This&nbsp;will&nbsp;be&nbsp;a&nbsp;value&nbsp;such&nbsp;as&nbsp;{@link&nbsp;net.sf.saxon.type.Type#ELEMENT}&nbsp;or&nbsp;{@link&nbsp;net.sf.saxon.type.Type#ATTRIBUTE}.<br>
+There&nbsp;are&nbsp;seven&nbsp;kinds&nbsp;of&nbsp;node:&nbsp;documents,&nbsp;elements,&nbsp;attributes,&nbsp;text,&nbsp;comments,&nbsp;processing-instructions,&nbsp;and&nbsp;namespaces.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;an&nbsp;integer&nbsp;identifying&nbsp;the&nbsp;kind&nbsp;of&nbsp;node.&nbsp;These&nbsp;integer&nbsp;values&nbsp;are&nbsp;the&nbsp;same&nbsp;as&nbsp;those&nbsp;used&nbsp;in&nbsp;the&nbsp;DOM</tt></dd>
+</dl>
+<dl><dt><strong>string_value</strong></dt>
+<dd><tt>get_String_value(self)<br>
+Property&nbsp;to&nbsp;get&nbsp;the&nbsp;string&nbsp;value&nbsp;of&nbsp;the&nbsp;node&nbsp;as&nbsp;defined&nbsp;in&nbsp;the&nbsp;XPath&nbsp;data&nbsp;model.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;string&nbsp;value&nbsp;of&nbsp;this&nbsp;node</tt></dd>
+</dl>
+<dl><dt><strong>typed_value</strong></dt>
+<dd><tt>typed_value(self)<br>
+Property&nbsp;-&nbsp;get&nbsp;the&nbsp;typed&nbsp;value&nbsp;of&nbsp;this&nbsp;node,&nbsp;as&nbsp;defined&nbsp;in&nbsp;XDM<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PyXdmValue:the&nbsp;typed&nbsp;value.&nbsp;If&nbsp;the&nbsp;typed&nbsp;value&nbsp;is&nbsp;a&nbsp;single&nbsp;atomic&nbsp;value,&nbsp;this&nbsp;will&nbsp;be&nbsp;returne&nbsp;as&nbsp;an&nbsp;instance&nbsp;of&nbsp;{@link&nbsp;XdmAtomicValue}</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="saxonc.html#PyXdmItem">PyXdmItem</a>:<br>
+<dl><dt><a name="PyXdmNode-get_atomic_value"><strong>get_atomic_value</strong></a>(...)</dt><dd><tt><a href="#PyXdmNode-get_atomic_value">get_atomic_value</a>(self)<br>
+Get&nbsp;the&nbsp;subclass&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>&nbsp;for&nbsp;this&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;current&nbsp;<a href="builtins.html#object">object</a>&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>:&nbsp;Subclass&nbsp;this&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;<a href="#PyXdmAtomicValue">PyXdmAtomicValue</a>&nbsp;or&nbsp;error</tt></dd></dl>
+
+<dl><dt><a name="PyXdmNode-get_node_value"><strong>get_node_value</strong></a>(...)</dt><dd><tt><a href="#PyXdmNode-get_node_value">get_node_value</a>(self)<br>
+Get&nbsp;the&nbsp;subclass&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;for&nbsp;this&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;current&nbsp;<a href="builtins.html#object">object</a>&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmNode">PyXdmNode</a>:&nbsp;Subclass&nbsp;this&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;or&nbsp;error</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="saxonc.html#PyXdmItem">PyXdmItem</a>:<br>
+<dl><dt><strong>is_atomic</strong></dt>
+<dd><tt>is_atomic(self)<br>
+Property&nbsp;to&nbsp;check&nbsp;if&nbsp;the&nbsp;current&nbsp;PyXdmItem&nbsp;is&nbsp;an&nbsp;atomic&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;Check&nbsp;of&nbsp;is&nbsp;atomic&nbsp;value</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="saxonc.html#PyXdmValue">PyXdmValue</a>:<br>
+<dl><dt><a name="PyXdmNode-add_xdm_item"><strong>add_xdm_item</strong></a>(...)</dt><dd><tt>add_xdm_tem(self,&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;value)<br>
+Add&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;to&nbsp;the&nbsp;Xdm&nbsp;sequence<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(<a href="#PyXdmItem">PyXdmItem</a>):&nbsp;The&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="PyXdmNode-item_at"><strong>item_at</strong></a>(...)</dt><dd><tt><a href="#PyXdmNode-item_at">item_at</a>(self,&nbsp;index)<br>
+Get&nbsp;the&nbsp;n'th&nbsp;item&nbsp;in&nbsp;the&nbsp;value,&nbsp;counting&nbsp;from&nbsp;zero.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;the&nbsp;index&nbsp;of&nbsp;the&nbsp;item&nbsp;required.&nbsp;Counting&nbsp;from&nbsp;zero<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmItem">PyXdmItem</a>:&nbsp;Get&nbsp;the&nbsp;item&nbsp;indicated&nbsp;at&nbsp;the&nbsp;index.&nbsp;If&nbsp;the&nbsp;item&nbsp;does&nbsp;not&nbsp;exist&nbsp;return&nbsp;None.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="saxonc.html#PyXdmValue">PyXdmValue</a>:<br>
+<dl><dt><strong>size</strong></dt>
+<dd><tt>size(self)<br>
+Property&nbsp;-&nbsp;Get&nbsp;the&nbsp;number&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;sequence<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;count&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;sequence</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PyXdmValue">class <strong>PyXdmValue</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Value&nbsp;in&nbsp;the&nbsp;XDM&nbsp;data&nbsp;model.&nbsp;A&nbsp;value&nbsp;is&nbsp;a&nbsp;sequence&nbsp;of&nbsp;zero&nbsp;or&nbsp;more&nbsp;items,&nbsp;each&nbsp;item&nbsp;being&nbsp;either&nbsp;an&nbsp;atomic&nbsp;value&nbsp;or&nbsp;a&nbsp;node.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PyXdmValue-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PyXdmValue-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt><a href="#PyXdmValue-__repr__">__repr__</a>(self)<br>
+The&nbsp;string&nbsp;representation&nbsp;of&nbsp;<a href="#PyXdmItem">PyXdmItem</a></tt></dd></dl>
+
+<dl><dt><a name="PyXdmValue-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt><a href="#PyXdmValue-__str__">__str__</a>(self)<br>
+The&nbsp;string&nbsp;representation&nbsp;of&nbsp;<a href="#PyXdmItem">PyXdmItem</a></tt></dd></dl>
+
+<dl><dt><a name="PyXdmValue-add_xdm_item"><strong>add_xdm_item</strong></a>(...)</dt><dd><tt>add_xdm_tem(self,&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;value)<br>
+Add&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;to&nbsp;the&nbsp;Xdm&nbsp;sequence<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(<a href="#PyXdmItem">PyXdmItem</a>):&nbsp;The&nbsp;<a href="#PyXdmItem">PyXdmItem</a>&nbsp;<a href="builtins.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="PyXdmValue-item_at"><strong>item_at</strong></a>(...)</dt><dd><tt><a href="#PyXdmValue-item_at">item_at</a>(self,&nbsp;index)<br>
+Get&nbsp;the&nbsp;n'th&nbsp;item&nbsp;in&nbsp;the&nbsp;value,&nbsp;counting&nbsp;from&nbsp;zero.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;the&nbsp;index&nbsp;of&nbsp;the&nbsp;item&nbsp;required.&nbsp;Counting&nbsp;from&nbsp;zero<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmItem">PyXdmItem</a>:&nbsp;Get&nbsp;the&nbsp;item&nbsp;indicated&nbsp;at&nbsp;the&nbsp;index.&nbsp;If&nbsp;the&nbsp;item&nbsp;does&nbsp;not&nbsp;exist&nbsp;return&nbsp;None.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>head</strong></dt>
+<dd><tt>head(self)<br>
+Property&nbsp;to&nbsp;get&nbsp;the&nbsp;first&nbsp;item&nbsp;in&nbsp;the&nbsp;sequence<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PyXdmItem:&nbsp;The&nbsp;PyXdmItem&nbsp;or&nbsp;None&nbsp;if&nbsp;the&nbsp;sequence&nbsp;is&nbsp;empty</tt></dd>
+</dl>
+<dl><dt><strong>size</strong></dt>
+<dd><tt>size(self)<br>
+Property&nbsp;-&nbsp;Get&nbsp;the&nbsp;number&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;sequence<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;The&nbsp;count&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;sequence</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PyXslt30Processor">class <strong>PyXslt30Processor</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;<a href="#PyXslt30Processor">PyXslt30Processor</a>&nbsp;represents&nbsp;factory&nbsp;to&nbsp;compile,&nbsp;load&nbsp;and&nbsp;execute&nbsp;a&nbsp;stylesheet.<br>
+It&nbsp;is&nbsp;possible&nbsp;to&nbsp;cache&nbsp;the&nbsp;context&nbsp;and&nbsp;the&nbsp;stylesheet&nbsp;in&nbsp;the&nbsp;<a href="#PyXslt30Processor">PyXslt30Processor</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PyXslt30Processor-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-add_package"><strong>add_package</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-add_package">add_package</a>(self,&nbsp;file_name)<br>
+Add&nbsp;an&nbsp;XSLT&nbsp;3.0&nbsp;package&nbsp;to&nbsp;the&nbsp;library.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;file_name&nbsp;(str):&nbsp;The&nbsp;file&nbsp;name&nbsp;of&nbsp;the&nbsp;XSLT&nbsp;package</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-apply_templates_returning_file"><strong>apply_templates_returning_file</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-apply_templates_returning_file">apply_templates_returning_file</a>(self,&nbsp;**kwds)<br>
+Invoke&nbsp;the&nbsp;stylesheet&nbsp;by&nbsp;applying&nbsp;templates&nbsp;to&nbsp;a&nbsp;supplied&nbsp;input&nbsp;sequence,&nbsp;Saving&nbsp;the&nbsp;<br>
+results&nbsp;to&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>).&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)&nbsp;and&nbsp;the&nbsp;required&nbsp;argument&nbsp;output_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-apply_templates_returning_file">apply_templates_returning_file</a>(stylesheet_file="test1.xsl",&nbsp;output_file="result.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(content)</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-apply_templates_returning_string"><strong>apply_templates_returning_string</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-apply_templates_returning_string">apply_templates_returning_string</a>(self,&nbsp;**kwds)<br>
+Invoke&nbsp;the&nbsp;stylesheet&nbsp;by&nbsp;applying&nbsp;templates&nbsp;to&nbsp;a&nbsp;supplied&nbsp;input&nbsp;sequence,&nbsp;Saving&nbsp;the&nbsp;results&nbsp;as&nbsp;a&nbsp;str.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content&nbsp;=&nbsp;xsltproc.apply_templates_returning_str(stylesheet_file="test1.xsl")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(content)</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-apply_templates_returning_value"><strong>apply_templates_returning_value</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-apply_templates_returning_value">apply_templates_returning_value</a>(self,&nbsp;**kwds)<br>
+Invoke&nbsp;the&nbsp;stylesheet&nbsp;by&nbsp;applying&nbsp;templates&nbsp;to&nbsp;a&nbsp;supplied&nbsp;input&nbsp;sequence,&nbsp;Saving&nbsp;the&nbsp;results&nbsp;as&nbsp;an&nbsp;XdmValue.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-apply_templates_returning_value">apply_templates_returning_value</a>(stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(stylesheet_file="test1.xsl")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-apply_templates_returning_value">apply_templates_returning_value</a>()</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-call_function_returning_file"><strong>call_function_returning_file</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-call_function_returning_file">call_function_returning_file</a>(self,&nbsp;str&nbsp;function_name,&nbsp;list&nbsp;args,&nbsp;**kwds)<br>
+Invoke&nbsp;a&nbsp;transformation&nbsp;by&nbsp;calling&nbsp;a&nbsp;named&nbsp;template&nbsp;and&nbsp;return&nbsp;result&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function_name(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;template&nbsp;to&nbsp;invoke.&nbsp;If&nbsp;None&nbsp;is&nbsp;supplied&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;call&nbsp;the&nbsp;initial-template<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;args:&nbsp;Pointer&nbsp;array&nbsp;of&nbsp;XdmValue&nbsp;<a href="builtins.html#object">object</a>&nbsp;-&nbsp;he&nbsp;values&nbsp;of&nbsp;the&nbsp;arguments&nbsp;to&nbsp;be&nbsp;supplied&nbsp;to&nbsp;the&nbsp;function.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-set_output_file">set_output_file</a>("result.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-call_function_returning_file">call_function_returning_file</a>("{<a href="http://localhost/example}func">http://localhost/example}func</a>",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-call_function_returning_file">call_function_returning_file</a>("{<a href="http://localhost/test}add">http://localhost/test}add</a>",&nbsp;stylesheet_file="test1.xsl",&nbsp;output_file="result.xml")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;xsltproc.<a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(stylesheet_file="test2.xsl")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-call_function_returning_file">call_function_returning_file</a>("{<a href="http://exmaple.com}func1">http://exmaple.com}func1</a>",&nbsp;output_file="result.xml")</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-call_function_returning_string"><strong>call_function_returning_string</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-call_function_returning_string">call_function_returning_string</a>(self,&nbsp;str&nbsp;function_name,&nbsp;list&nbsp;args,&nbsp;**kwds)<br>
+Invoke&nbsp;a&nbsp;transformation&nbsp;by&nbsp;calling&nbsp;a&nbsp;named&nbsp;template&nbsp;and&nbsp;return&nbsp;result&nbsp;as&nbsp;a&nbsp;serialized&nbsp;string.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function_name(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;template&nbsp;to&nbsp;invoke.&nbsp;If&nbsp;None&nbsp;is&nbsp;supplied&nbsp;then&nbsp;call&nbsp;the&nbsp;initial-template<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;args:&nbsp;Pointer&nbsp;array&nbsp;of&nbsp;XdmValue&nbsp;<a href="builtins.html#object">object</a>&nbsp;-&nbsp;he&nbsp;values&nbsp;of&nbsp;the&nbsp;arguments&nbsp;to&nbsp;be&nbsp;supplied&nbsp;to&nbsp;the&nbsp;function.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;str&nbsp;value<br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_function_returning_string">call_function_returning_string</a>("{<a href="http://localhost/example}func">http://localhost/example}func</a>",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_function_returning_string">call_function_returning_string</a>("{<a href="http://localhost/test}add">http://localhost/test}add</a>",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;xsltproc.<a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(stylesheet_file="test2.xsl")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_function_returning_string">call_function_returning_string</a>("{<a href="http://exmaple.com}func1">http://exmaple.com}func1</a>")</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-call_function_returning_value"><strong>call_function_returning_value</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-call_function_returning_value">call_function_returning_value</a>(self,&nbsp;str&nbsp;function_name,&nbsp;list&nbsp;args,&nbsp;**kwds)<br>
+Invoke&nbsp;a&nbsp;transformation&nbsp;by&nbsp;calling&nbsp;a&nbsp;named&nbsp;template&nbsp;and&nbsp;return&nbsp;result&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function_name(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;template&nbsp;to&nbsp;invoke.&nbsp;If&nbsp;None&nbsp;is&nbsp;supplied&nbsp;then&nbsp;call&nbsp;the&nbsp;initial-template<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;args:&nbsp;Pointer&nbsp;array&nbsp;of&nbsp;XdmValue&nbsp;<a href="builtins.html#object">object</a>&nbsp;-&nbsp;he&nbsp;values&nbsp;of&nbsp;the&nbsp;arguments&nbsp;to&nbsp;be&nbsp;supplied&nbsp;to&nbsp;the&nbsp;function.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_function_returning_value">call_function_returning_value</a>("{<a href="http://localhost/example}func">http://localhost/example}func</a>",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_function_returning_value">call_function_returning_value</a>("{<a href="http://localhost/test}add">http://localhost/test}add</a>",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;xsltproc.<a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(stylesheet_file="test2.xsl")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_function_returning_value">call_function_returning_value</a>("{<a href="http://exmaple.com}func1">http://exmaple.com}func1</a>")</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-call_template_returning_file"><strong>call_template_returning_file</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-call_template_returning_file">call_template_returning_file</a>(self,&nbsp;str&nbsp;template_name,&nbsp;**kwds)<br>
+Invoke&nbsp;a&nbsp;transformation&nbsp;by&nbsp;calling&nbsp;a&nbsp;named&nbsp;template&nbsp;and&nbsp;save&nbsp;result&nbsp;in&nbsp;a&nbsp;specified&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template_name(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;template&nbsp;to&nbsp;invoke.&nbsp;If&nbsp;None&nbsp;is&nbsp;supplied&nbsp;then&nbsp;call&nbsp;the&nbsp;initial-template<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_node&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;xsltproc.<a href="#PyXslt30Processor-call_template_returning_file">call_template_returning_file</a>("main",&nbsp;stylesheet_file="test1.xsl",&nbsp;&nbsp;output_file="result.xml")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-call_template_returning_file">call_template_returning_file</a>("main",&nbsp;stylesheet_file="test1.xsl",&nbsp;output_file="result.xml")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;xsltproc.<a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(stylesheet_file="test2.xsl")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-call_template_returning_file">call_template_returning_file</a>("go",&nbsp;output_file="result.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(result)</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-call_template_returning_string"><strong>call_template_returning_string</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-call_template_returning_string">call_template_returning_string</a>(self,&nbsp;str&nbsp;template_name,&nbsp;**kwds)<br>
+Invoke&nbsp;a&nbsp;transformation&nbsp;by&nbsp;calling&nbsp;a&nbsp;named&nbsp;template&nbsp;and&nbsp;return&nbsp;result&nbsp;as&nbsp;a&nbsp;string.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template_name(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;template&nbsp;to&nbsp;invoke.&nbsp;If&nbsp;None&nbsp;is&nbsp;supplied&nbsp;then&nbsp;call&nbsp;the&nbsp;initial-template<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_Value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_template_returning_string">call_template_returning_string</a>("main",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_template_returning_string">call_template_returning_string</a>("main",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+cdef&nbsp;const&nbsp;char&nbsp;*&nbsp;c_templateName&nbsp;=&nbsp;NULL<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;xsltproc.<a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(stylesheet_file="test2.xsl")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_template_returning_string">call_template_returning_string</a>("go")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(result)</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-call_template_returning_value"><strong>call_template_returning_value</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-call_template_returning_value">call_template_returning_value</a>(self,&nbsp;str&nbsp;template_name,&nbsp;**kwds)<br>
+Invoke&nbsp;a&nbsp;transformation&nbsp;by&nbsp;calling&nbsp;a&nbsp;named&nbsp;template&nbsp;and&nbsp;return&nbsp;result&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template_name(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;template&nbsp;to&nbsp;invoke.&nbsp;If&nbsp;None&nbsp;is&nbsp;supplied&nbsp;then&nbsp;call&nbsp;the&nbsp;initial-template<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_template_returning_value">call_template_returning_value</a>("main",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_template_returning_value">call_template_returning_value</a>("main",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;xsltproc.<a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(stylesheet_file="test2.xsl")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(file_name="cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-call_template_returning_value">call_template_returning_value</a>("go")</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-check_exception"><strong>check_exception</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-check_exception">check_exception</a>(self)<br>
+Check&nbsp;for&nbsp;exception&nbsp;thrown&nbsp;and&nbsp;get&nbsp;message&nbsp;of&nbsp;the&nbsp;exception.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Returns&nbsp;the&nbsp;exception&nbsp;message&nbsp;if&nbsp;thrown&nbsp;otherwise&nbsp;return&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-clearPackages"><strong>clearPackages</strong></a>(...)</dt><dd><tt>clear_packages(self)<br>
+Clear&nbsp;saved&nbsp;XSLT&nbsp;3.0&nbsp;package&nbsp;in&nbsp;the&nbsp;library.</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-clear_parameters"><strong>clear_parameters</strong></a>(...)</dt><dd><tt>clear_parameter(self)<br>
+Clear&nbsp;all&nbsp;parameters&nbsp;set&nbsp;on&nbsp;the&nbsp;processor&nbsp;for&nbsp;execution&nbsp;of&nbsp;the&nbsp;stylesheet</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-clear_properties"><strong>clear_properties</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-clear_properties">clear_properties</a>(self)<br>
+Clear&nbsp;all&nbsp;properties&nbsp;set&nbsp;on&nbsp;the&nbsp;processor</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-compile_stylesheet"><strong>compile_stylesheet</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(self,&nbsp;**kwds)<br>
+Compile&nbsp;a&nbsp;stylesheet&nbsp;&nbsp;received&nbsp;as&nbsp;text,&nbsp;uri&nbsp;or&nbsp;as&nbsp;a&nbsp;node&nbsp;<a href="builtins.html#object">object</a>.&nbsp;The&nbsp;compiled&nbsp;stylesheet&nbsp;<br>
+is&nbsp;cached&nbsp;and&nbsp;available&nbsp;for&nbsp;execution&nbsp;later.&nbsp;It&nbsp;is&nbsp;also&nbsp;possible&nbsp;to&nbsp;save&nbsp;the&nbsp;compiled&nbsp;<br>
+stylesheet&nbsp;(SEF&nbsp;file)&nbsp;given&nbsp;the&nbsp;option&nbsp;'save'&nbsp;and&nbsp;'output_file'.<br>
+&nbsp;<br>
+Get&nbsp;the&nbsp;stylesheet&nbsp;associated&nbsp;via&nbsp;the&nbsp;xml-stylesheet&nbsp;processing&nbsp;instruction&nbsp;(see<br>
+<a href="http://www.w3.org/TR/xml-stylesheet/">http://www.w3.org/TR/xml-stylesheet/</a>)&nbsp;with&nbsp;the&nbsp;document<br>
+document&nbsp;specified&nbsp;in&nbsp;the&nbsp;source&nbsp;parameter,&nbsp;and&nbsp;that&nbsp;match<br>
+the&nbsp;given&nbsp;criteria.&nbsp;&nbsp;If&nbsp;there&nbsp;are&nbsp;several&nbsp;suitable&nbsp;xml-stylesheet<br>
+processing&nbsp;instructions,&nbsp;then&nbsp;the&nbsp;returned&nbsp;Source&nbsp;will&nbsp;identify<br>
+a&nbsp;synthesized&nbsp;stylesheet&nbsp;module&nbsp;that&nbsp;imports&nbsp;all&nbsp;the&nbsp;referenced<br>
+stylesheet&nbsp;module.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;keyword&nbsp;arguments&nbsp;stylesheet_text&nbsp;(str),&nbsp;stylesheet_file&nbsp;(str),&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;associated_file&nbsp;(str)&nbsp;or&nbsp;stylsheet_node&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>).&nbsp;Also&nbsp;possible&nbsp;to&nbsp;add&nbsp;the&nbsp;options&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;save&nbsp;(boolean)&nbsp;and&nbsp;output_file,&nbsp;which&nbsp;creates&nbsp;an&nbsp;exported&nbsp;stylesheet&nbsp;to&nbsp;file&nbsp;(SEF).<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;xsltproc.<a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(stylesheet_text="&lt;xsl:stylesheet&nbsp;xmlns:xsl='<a href="http://www.w3.org/1999/XSL/Transform">http://www.w3.org/1999/XSL/Transform</a>'&nbsp;version='2.0'&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsl:param&nbsp;name='values'&nbsp;select='(2,3,4)'&nbsp;/&gt;&lt;xsl:output&nbsp;method='xml'&nbsp;indent='yes'&nbsp;/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsl:template&nbsp;match='*'&gt;&lt;output&gt;&lt;xsl:value-of&nbsp;select='//person[1]'/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsl:for-each&nbsp;select='$values'&nbsp;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;out&gt;&lt;xsl:value-of&nbsp;select='.&nbsp;*&nbsp;3'/&gt;&lt;/out&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsl:for-each&gt;&lt;/output&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;")<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;xsltproc.<a href="#PyXslt30Processor-compile_stylesheet">compile_stylesheet</a>(stylesheet_file="test1.xsl",&nbsp;save=True,&nbsp;output_file="test1.sef")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;xsltproc.compile(associated_file="foo.xml")</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-exception_clear"><strong>exception_clear</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-exception_clear">exception_clear</a>(self)<br>
+Clear&nbsp;any&nbsp;exception&nbsp;thrown</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-exception_count"><strong>exception_count</strong></a>(...)</dt><dd><tt>excepton_count(self)<br>
+Get&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;during&nbsp;execution.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Count&nbsp;of&nbsp;the&nbsp;exceptions&nbsp;thrown&nbsp;during&nbsp;execution</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-exception_occurred"><strong>exception_occurred</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-exception_occurred">exception_occurred</a>(self)<br>
+Checks&nbsp;for&nbsp;pending&nbsp;exceptions&nbsp;without&nbsp;creating&nbsp;a&nbsp;local&nbsp;reference&nbsp;to&nbsp;the&nbsp;exception&nbsp;<a href="builtins.html#object">object</a><br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;True&nbsp;when&nbsp;there&nbsp;is&nbsp;a&nbsp;pending&nbsp;exception;&nbsp;otherwise&nbsp;return&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-get_error_code"><strong>get_error_code</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-get_error_code">get_error_code</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;i'th&nbsp;error&nbsp;code&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;error&nbsp;code&nbsp;associated&nbsp;with&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-get_error_message"><strong>get_error_message</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-get_error_message">get_error_message</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;ith&nbsp;error&nbsp;message&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;message&nbsp;of&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-get_parameter"><strong>get_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-get_parameter">get_parameter</a>(self,&nbsp;name)<br>
+Get&nbsp;a&nbsp;parameter&nbsp;value&nbsp;by&nbsp;a&nbsp;given&nbsp;name<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;stylesheet&nbsp;parameter<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;The&nbsp;Xdm&nbsp;value&nbsp;of&nbsp;the&nbsp;parameter</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-get_xsl_messages"><strong>get_xsl_messages</strong></a>(...)</dt><dd><tt>Get&nbsp;the&nbsp;messages&nbsp;written&nbsp;using&nbsp;the&nbsp;&lt;code&gt;xsl:message&lt;/code&gt;&nbsp;instruction<br>
+get_xsl_message(self)<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Messages&nbsp;returned&nbsp;as&nbsp;an&nbsp;XdmValue.</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-release_stylesheet"><strong>release_stylesheet</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-release_stylesheet">release_stylesheet</a>(self)<br>
+Release&nbsp;cached&nbsp;stylesheet</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-remove_parameter"><strong>remove_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-remove_parameter">remove_parameter</a>(self,&nbsp;name)<br>
+Remove&nbsp;the&nbsp;parameter&nbsp;given&nbsp;by&nbsp;name&nbsp;from&nbsp;the&nbsp;<a href="#PyXslt30Processor">PyXslt30Processor</a>.&nbsp;The&nbsp;parameter&nbsp;will&nbsp;not&nbsp;have&nbsp;any&nbsp;affect&nbsp;on&nbsp;the&nbsp;stylesheet&nbsp;if&nbsp;it&nbsp;has&nbsp;not&nbsp;yet&nbsp;been&nbsp;executed<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;stylesheet&nbsp;parameter<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;True&nbsp;if&nbsp;the&nbsp;removal&nbsp;of&nbsp;the&nbsp;parameter&nbsp;has&nbsp;been&nbsp;successful,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-set_cwd"><strong>set_cwd</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-set_cwd">set_cwd</a>(self,&nbsp;cwd)<br>
+Set&nbsp;the&nbsp;current&nbsp;working&nbsp;directory.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cwd&nbsp;(str):&nbsp;current&nbsp;working&nbsp;directory</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-set_global_context_item"><strong>set_global_context_item</strong></a>(...)</dt><dd><tt>Set&nbsp;the&nbsp;global&nbsp;context&nbsp;item&nbsp;for&nbsp;the&nbsp;transformation.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Keyword&nbsp;argument&nbsp;can&nbsp;only&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;following:&nbsp;file_name|xdm_item<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Exception:&nbsp;Exception&nbsp;is&nbsp;raised&nbsp;if&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;not&nbsp;one&nbsp;of&nbsp;file_name&nbsp;or&nbsp;an&nbsp;Xdm&nbsp;item.</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-set_initial_match_selection"><strong>set_initial_match_selection</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-set_initial_match_selection">set_initial_match_selection</a>(self,&nbsp;**kwds)<br>
+The&nbsp;initial&nbsp;filename&nbsp;to&nbsp;which&nbsp;templates&nbsp;are&nbsp;to&nbsp;be&nbsp;applied&nbsp;(equivalent&nbsp;to&nbsp;the&nbsp;&lt;code&gt;select&lt;/code&gt;&nbsp;attribute&nbsp;of&nbsp;&lt;code&gt;xsl:apply-templates&lt;/code&gt;).<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Keyword&nbsp;argument&nbsp;can&nbsp;only&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;following:&nbsp;file_name|xdm_value<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Exception:&nbsp;Exception&nbsp;is&nbsp;raised&nbsp;if&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;not&nbsp;one&nbsp;of&nbsp;file_name&nbsp;or&nbsp;XdmValue.</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-set_initial_template_parameters"><strong>set_initial_template_parameters</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-set_initial_template_parameters">set_initial_template_parameters</a>(self,&nbsp;bool&nbsp;tunnel,&nbsp;**kwds)<br>
+Set&nbsp;parameters&nbsp;to&nbsp;be&nbsp;passed&nbsp;to&nbsp;the&nbsp;initial&nbsp;template.&nbsp;These&nbsp;are&nbsp;used<br>
+whether&nbsp;the&nbsp;transformation&nbsp;is&nbsp;invoked&nbsp;by&nbsp;applying&nbsp;templates&nbsp;to&nbsp;an&nbsp;initial&nbsp;source&nbsp;item,<br>
+or&nbsp;by&nbsp;invoking&nbsp;a&nbsp;named&nbsp;template.&nbsp;The&nbsp;parameters&nbsp;in&nbsp;question&nbsp;are&nbsp;the&nbsp;xsl:param&nbsp;elements<br>
+appearing&nbsp;as&nbsp;children&nbsp;of&nbsp;the&nbsp;xsl:template&nbsp;element.<br>
+&nbsp;<br>
+TODO:&nbsp;To&nbsp;fix&nbsp;issue&nbsp;where&nbsp;we&nbsp;pass&nbsp;XdmValue&nbsp;<a href="builtins.html#object">object</a>&nbsp;created&nbsp;directly&nbsp;in&nbsp;the&nbsp;function&nbsp;argument.&nbsp;This&nbsp;causes&nbsp;seg&nbsp;error<br>
+e.g.&nbsp;set_initial_template_parameter(False,&nbsp;{a:saxonproc.make_integer_value(12)})<br>
+Do&nbsp;the&nbsp;following&nbsp;instead:<br>
+paramArr&nbsp;=&nbsp;{a:saxonproc.make_integer_value(12)}<br>
+set_initial_template_parameter(False,&nbsp;paramArr)<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tunnel&nbsp;(bool):&nbsp;True&nbsp;if&nbsp;these&nbsp;values&nbsp;are&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;setting&nbsp;tunnel&nbsp;parameters;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;the&nbsp;parameters&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;the&nbsp;initial&nbsp;template&nbsp;supplied&nbsp;as&nbsp;an&nbsp;key-value&nbsp;pair.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False&nbsp;if&nbsp;they&nbsp;are&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;non-tunnel&nbsp;parameters.&nbsp;The&nbsp;default&nbsp;is&nbsp;false.<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)paramArr&nbsp;=&nbsp;{'a':saxonproc.make_integer_value(12),&nbsp;'b':saxonproc.make_integer_value(5)}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-set_initial_template_parameters">set_initial_template_parameters</a>(False,&nbsp;paramArr)</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-set_jit_compilation"><strong>set_jit_compilation</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-set_jit_compilation">set_jit_compilation</a>(self,&nbsp;jit)<br>
+Say&nbsp;whether&nbsp;just-in-time&nbsp;compilation&nbsp;of&nbsp;template&nbsp;rules&nbsp;should&nbsp;be&nbsp;used.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;jit&nbsp;(bool):&nbsp;True&nbsp;if&nbsp;just-in-time&nbsp;compilation&nbsp;is&nbsp;to&nbsp;be&nbsp;enabled.&nbsp;With&nbsp;this&nbsp;option&nbsp;enabled,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;analysis&nbsp;of&nbsp;a&nbsp;template&nbsp;rule&nbsp;is&nbsp;deferred&nbsp;until&nbsp;the&nbsp;first&nbsp;time&nbsp;that&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template&nbsp;is&nbsp;matched.&nbsp;This&nbsp;can&nbsp;improve&nbsp;performance&nbsp;when&nbsp;many&nbsp;template<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rules&nbsp;are&nbsp;rarely&nbsp;used&nbsp;during&nbsp;the&nbsp;course&nbsp;of&nbsp;a&nbsp;particular&nbsp;transformation;&nbsp;however,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it&nbsp;means&nbsp;that&nbsp;static&nbsp;errors&nbsp;in&nbsp;the&nbsp;stylesheet&nbsp;will&nbsp;not&nbsp;necessarily&nbsp;cause&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compile(Source)&nbsp;method&nbsp;to&nbsp;throw&nbsp;an&nbsp;exception&nbsp;(errors&nbsp;in&nbsp;code&nbsp;that&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actually&nbsp;executed&nbsp;will&nbsp;still&nbsp;be&nbsp;notified&nbsp;but&nbsp;this&nbsp;may&nbsp;happen&nbsp;after&nbsp;the&nbsp;compile(Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method&nbsp;returns).&nbsp;This&nbsp;option&nbsp;is&nbsp;enabled&nbsp;by&nbsp;default&nbsp;in&nbsp;Saxon-EE,&nbsp;and&nbsp;is&nbsp;not&nbsp;available<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;Saxon-HE&nbsp;or&nbsp;Saxon-PE.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recommendation:&nbsp;disable&nbsp;this&nbsp;option&nbsp;unless&nbsp;you&nbsp;are&nbsp;confident&nbsp;that&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stylesheet&nbsp;you&nbsp;are&nbsp;compiling&nbsp;is&nbsp;error-free.</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-set_output_file"><strong>set_output_file</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-set_output_file">set_output_file</a>(self,&nbsp;output_file)<br>
+Set&nbsp;the&nbsp;output&nbsp;file&nbsp;where&nbsp;the&nbsp;output&nbsp;of&nbsp;the&nbsp;transformation&nbsp;will&nbsp;be&nbsp;sent<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output_file&nbsp;(str):&nbsp;The&nbsp;output&nbsp;file&nbsp;supplied&nbsp;as&nbsp;a&nbsp;str</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-set_parameter"><strong>set_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-set_parameter">set_parameter</a>(self,&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;value)<br>
+Set&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;stylesheet&nbsp;parameter<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;stylesheet&nbsp;parameter,&nbsp;as&nbsp;a&nbsp;string.&nbsp;For&nbsp;namespaced&nbsp;parameter&nbsp;use&nbsp;the&nbsp;JAXP&nbsp;solution&nbsp;i.e.&nbsp;"{uri}name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>):&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;stylesheet&nbsp;parameter,&nbsp;or&nbsp;null&nbsp;to&nbsp;clear&nbsp;a&nbsp;previously&nbsp;set&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-set_property"><strong>set_property</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-set_property">set_property</a>(self,&nbsp;name,&nbsp;value)<br>
+Set&nbsp;a&nbsp;property&nbsp;specific&nbsp;to&nbsp;the&nbsp;processor&nbsp;in&nbsp;use.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(str):&nbsp;The&nbsp;value&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;XsltProcessor:&nbsp;set&nbsp;serialization&nbsp;properties&nbsp;(names&nbsp;start&nbsp;with&nbsp;'!'&nbsp;i.e.&nbsp;name&nbsp;"!method"&nbsp;-&gt;&nbsp;"xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'o':outfile&nbsp;name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'it':&nbsp;initial&nbsp;template,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'im':&nbsp;initial&nbsp;mode,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'s':&nbsp;source&nbsp;as&nbsp;file&nbsp;name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'m':&nbsp;switch&nbsp;on&nbsp;message&nbsp;listener&nbsp;for&nbsp;xsl:message&nbsp;instructions,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'item'|&nbsp;'node'&nbsp;:&nbsp;source&nbsp;supplied&nbsp;as&nbsp;an&nbsp;XdmNode&nbsp;<a href="builtins.html#object">object</a>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'extc':Set&nbsp;the&nbsp;native&nbsp;library&nbsp;to&nbsp;use&nbsp;with&nbsp;Saxon&nbsp;for&nbsp;extension&nbsp;functions&nbsp;written&nbsp;in&nbsp;C/C++/PHP</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-set_result_as_raw_value"><strong>set_result_as_raw_value</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-set_result_as_raw_value">set_result_as_raw_value</a>(self,&nbsp;is_raw)<br>
+Set&nbsp;true&nbsp;if&nbsp;the&nbsp;return&nbsp;type&nbsp;of&nbsp;callTemplate,&nbsp;applyTemplates&nbsp;and&nbsp;transform&nbsp;methods&nbsp;is&nbsp;to&nbsp;return&nbsp;XdmValue,&nbsp;otherwise&nbsp;return&nbsp;XdmNode&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;root&nbsp;Document&nbsp;node<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;is_raw&nbsp;(bool):&nbsp;True&nbsp;if&nbsp;returning&nbsp;raw&nbsp;result,&nbsp;i.e.&nbsp;XdmValue,&nbsp;otherwise&nbsp;return&nbsp;XdmNode</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-transform_to_file"><strong>transform_to_file</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-transform_to_file">transform_to_file</a>(self,&nbsp;**kwds)<br>
+Execute&nbsp;transformation&nbsp;to&nbsp;a&nbsp;file.&nbsp;It&nbsp;is&nbsp;possible&nbsp;to&nbsp;specify&nbsp;the&nbsp;as&nbsp;an&nbsp;argument&nbsp;or&nbsp;using&nbsp;the&nbsp;set_output_file&nbsp;method.<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_node&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str),&nbsp;output_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;xsltproc.<a href="#PyXslt30Processor-transform_to_file">transform_to_file</a>(source_file="cat.xml",&nbsp;stylesheet_file="test1.xsl",&nbsp;output_file="result.xml")<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.set_source("cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.setoutput_file("result.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-transform_to_file">transform_to_file</a>(stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;node&nbsp;=&nbsp;saxon_proc.parse_xml(xml_text="&lt;in/&gt;")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXslt30Processor-transform_to_file">transform_to_file</a>(output_file="result.xml",&nbsp;stylesheet_file="test1.xsl",&nbsp;xdm_node=&nbsp;node)</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-transform_to_string"><strong>transform_to_string</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-transform_to_string">transform_to_string</a>(self,&nbsp;**kwds)<br>
+Execute&nbsp;transformation&nbsp;to&nbsp;string.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_node&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-transform_to_string">transform_to_string</a>(source_file="cat.xml",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.set_source("cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-transform_to_string">transform_to_string</a>(stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;node&nbsp;=&nbsp;saxon_proc.parse_xml(xml_text="&lt;in/&gt;")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-transform_to_string">transform_to_string</a>(stylesheet_file="test1.xsl",&nbsp;xdm_node=&nbsp;node)</tt></dd></dl>
+
+<dl><dt><a name="PyXslt30Processor-transform_to_value"><strong>transform_to_value</strong></a>(...)</dt><dd><tt><a href="#PyXslt30Processor-transform_to_value">transform_to_value</a>(self,&nbsp;**kwds)<br>
+Execute&nbsp;transformation&nbsp;to&nbsp;an&nbsp;Xdm&nbsp;Node<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_node&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmNode">PyXdmNode</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-transform_to_value">transform_to_value</a>(source_file="cat.xml",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.set_source("cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXslt30Processor-transform_to_value">transform_to_value</a>(stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;node&nbsp;=&nbsp;saxon_proc.parse_xml(xml_text="&lt;in/&gt;")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node&nbsp;=&nbsp;xsltproc.transform_tovalue(stylesheet_file="test1.xsl",&nbsp;xdm_node=&nbsp;node)</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PyXsltProcessor">class <strong>PyXsltProcessor</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;<a href="#PyXsltProcessor">PyXsltProcessor</a>&nbsp;represents&nbsp;factory&nbsp;to&nbsp;compile,&nbsp;load&nbsp;and&nbsp;execute&nbsp;a&nbsp;stylesheet.<br>
+It&nbsp;is&nbsp;possible&nbsp;to&nbsp;cache&nbsp;the&nbsp;context&nbsp;and&nbsp;the&nbsp;stylesheet&nbsp;in&nbsp;the&nbsp;<a href="#PyXsltProcessor">PyXsltProcessor</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PyXsltProcessor-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-check_exception"><strong>check_exception</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-check_exception">check_exception</a>(self)<br>
+Check&nbsp;for&nbsp;exception&nbsp;thrown&nbsp;and&nbsp;get&nbsp;message&nbsp;of&nbsp;the&nbsp;exception.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Returns&nbsp;the&nbsp;exception&nbsp;message&nbsp;if&nbsp;thrown&nbsp;otherwise&nbsp;return&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-clear_parameters"><strong>clear_parameters</strong></a>(...)</dt><dd><tt>clear_parameter(self)<br>
+Clear&nbsp;all&nbsp;parameters&nbsp;set&nbsp;on&nbsp;the&nbsp;processor&nbsp;for&nbsp;execution&nbsp;of&nbsp;the&nbsp;stylesheet</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-clear_properties"><strong>clear_properties</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-clear_properties">clear_properties</a>(self)<br>
+Clear&nbsp;all&nbsp;properties&nbsp;set&nbsp;on&nbsp;the&nbsp;processor</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-compile_stylesheet"><strong>compile_stylesheet</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-compile_stylesheet">compile_stylesheet</a>(self,&nbsp;**kwds)<br>
+Compile&nbsp;a&nbsp;stylesheet&nbsp;&nbsp;received&nbsp;as&nbsp;text,&nbsp;uri&nbsp;or&nbsp;as&nbsp;a&nbsp;node&nbsp;<a href="builtins.html#object">object</a>.&nbsp;The&nbsp;compiled&nbsp;stylesheet&nbsp;is&nbsp;cached&nbsp;and&nbsp;available&nbsp;for&nbsp;execution<br>
+later.&nbsp;It&nbsp;is&nbsp;also&nbsp;possible&nbsp;to&nbsp;save&nbsp;the&nbsp;compiled&nbsp;stylesheet&nbsp;(SEF&nbsp;file)&nbsp;given&nbsp;the&nbsp;option&nbsp;'save'&nbsp;and&nbsp;'output_file'<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;keyword&nbsp;arguments&nbsp;stylesheet_text&nbsp;(str),&nbsp;stylesheet_file&nbsp;(str)&nbsp;or&nbsp;stylsheetnode&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>).&nbsp;Also&nbsp;possible<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;add&nbsp;the&nbsp;options&nbsp;save&nbsp;(boolean)&nbsp;and&nbsp;output_file,&nbsp;which&nbsp;creates&nbsp;an&nbsp;exported&nbsp;stylesheet&nbsp;to&nbsp;file&nbsp;(SEF).<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;xsltproc.<a href="#PyXsltProcessor-compile_stylesheet">compile_stylesheet</a>(stylesheet_text="&lt;xsl:stylesheet&nbsp;xmlns:xsl='<a href="http://www.w3.org/1999/XSL/Transform">http://www.w3.org/1999/XSL/Transform</a>'&nbsp;version='2.0'&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsl:param&nbsp;name='values'&nbsp;select='(2,3,4)'&nbsp;/&gt;&lt;xsl:output&nbsp;method='xml'&nbsp;indent='yes'&nbsp;/&gt;&lt;xsl:template&nbsp;match='*'&gt;&lt;output&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsl:value-of&nbsp;select='//person[1]'/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsl:for-each&nbsp;select='$values'&nbsp;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;out&gt;&lt;xsl:value-of&nbsp;select='.&nbsp;*&nbsp;3'/&gt;&lt;/out&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsl:for-each&gt;&lt;/output&gt;&lt;/xsl:template&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsl:stylesheet&gt;")<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;xsltproc.<a href="#PyXsltProcessor-compile_stylesheet">compile_stylesheet</a>(stylesheet_file="test1.xsl",&nbsp;save=True,&nbsp;output_file="test1.sef")</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-exception_clear"><strong>exception_clear</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-exception_clear">exception_clear</a>(self)<br>
+Clear&nbsp;any&nbsp;exception&nbsp;thrown</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-exception_count"><strong>exception_count</strong></a>(...)</dt><dd><tt>excepton_count(self)<br>
+Get&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;during&nbsp;execution.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Count&nbsp;of&nbsp;the&nbsp;exceptions&nbsp;thrown&nbsp;during&nbsp;execution</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-exception_occurred"><strong>exception_occurred</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-exception_occurred">exception_occurred</a>(self)<br>
+Checks&nbsp;for&nbsp;pending&nbsp;exceptions&nbsp;without&nbsp;creating&nbsp;a&nbsp;local&nbsp;reference&nbsp;to&nbsp;the&nbsp;exception&nbsp;<a href="builtins.html#object">object</a><br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;True&nbsp;when&nbsp;there&nbsp;is&nbsp;a&nbsp;pending&nbsp;exception;&nbsp;otherwise&nbsp;return&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-get_error_code"><strong>get_error_code</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-get_error_code">get_error_code</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;i'th&nbsp;error&nbsp;code&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;error&nbsp;code&nbsp;associated&nbsp;with&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-get_error_message"><strong>get_error_message</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-get_error_message">get_error_message</a>(self,&nbsp;index)<br>
+A&nbsp;transformation&nbsp;may&nbsp;have&nbsp;a&nbsp;number&nbsp;of&nbsp;errors&nbsp;reported&nbsp;against&nbsp;it.&nbsp;Get&nbsp;the&nbsp;ith&nbsp;error&nbsp;message&nbsp;if&nbsp;there&nbsp;are&nbsp;any&nbsp;errors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;i'th&nbsp;exception<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;message&nbsp;of&nbsp;the&nbsp;i'th&nbsp;exception.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;i'th&nbsp;exception&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-get_parameter"><strong>get_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-get_parameter">get_parameter</a>(self,&nbsp;name)<br>
+Get&nbsp;a&nbsp;parameter&nbsp;value&nbsp;by&nbsp;a&nbsp;given&nbsp;name<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;stylesheet&nbsp;parameter<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;The&nbsp;Xdm&nbsp;value&nbsp;of&nbsp;the&nbsp;parameter</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-get_xsl_messages"><strong>get_xsl_messages</strong></a>(...)</dt><dd><tt>Get&nbsp;the&nbsp;messages&nbsp;written&nbsp;using&nbsp;the&nbsp;&lt;code&gt;xsl:message&lt;/code&gt;&nbsp;instruction<br>
+get_xsl_message(self)<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmValue">PyXdmValue</a>:&nbsp;Messages&nbsp;returned&nbsp;as&nbsp;an&nbsp;XdmValue.</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-release_stylesheet"><strong>release_stylesheet</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-release_stylesheet">release_stylesheet</a>(self)<br>
+Release&nbsp;cached&nbsp;stylesheet</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-remove_parameter"><strong>remove_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-remove_parameter">remove_parameter</a>(self,&nbsp;name)<br>
+Remove&nbsp;the&nbsp;parameter&nbsp;given&nbsp;by&nbsp;name&nbsp;from&nbsp;the&nbsp;<a href="#PyXsltProcessor">PyXsltProcessor</a>.&nbsp;The&nbsp;parameter&nbsp;will&nbsp;not&nbsp;have&nbsp;any&nbsp;affect&nbsp;on&nbsp;the&nbsp;stylesheet&nbsp;if&nbsp;it&nbsp;has&nbsp;not&nbsp;yet&nbsp;been&nbsp;executed<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;stylesheet&nbsp;parameter<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;True&nbsp;if&nbsp;the&nbsp;removal&nbsp;of&nbsp;the&nbsp;parameter&nbsp;has&nbsp;been&nbsp;successful,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-set_cwd"><strong>set_cwd</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-set_cwd">set_cwd</a>(self,&nbsp;cwd)<br>
+Set&nbsp;the&nbsp;current&nbsp;working&nbsp;directory.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cwd&nbsp;(str):&nbsp;current&nbsp;working&nbsp;directory</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-set_jit_compilation"><strong>set_jit_compilation</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-set_jit_compilation">set_jit_compilation</a>(self,&nbsp;jit)<br>
+Say&nbsp;whether&nbsp;just-in-time&nbsp;compilation&nbsp;of&nbsp;template&nbsp;rules&nbsp;should&nbsp;be&nbsp;used.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;jit&nbsp;(bool):&nbsp;True&nbsp;if&nbsp;just-in-time&nbsp;compilation&nbsp;is&nbsp;to&nbsp;be&nbsp;enabled.&nbsp;With&nbsp;this&nbsp;option&nbsp;enabled,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;analysis&nbsp;of&nbsp;a&nbsp;template&nbsp;rule&nbsp;is&nbsp;deferred&nbsp;until&nbsp;the&nbsp;first&nbsp;time&nbsp;that&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template&nbsp;is&nbsp;matched.&nbsp;This&nbsp;can&nbsp;improve&nbsp;performance&nbsp;when&nbsp;many&nbsp;template<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rules&nbsp;are&nbsp;rarely&nbsp;used&nbsp;during&nbsp;the&nbsp;course&nbsp;of&nbsp;a&nbsp;particular&nbsp;transformation;&nbsp;however,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it&nbsp;means&nbsp;that&nbsp;static&nbsp;errors&nbsp;in&nbsp;the&nbsp;stylesheet&nbsp;will&nbsp;not&nbsp;necessarily&nbsp;cause&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compile(Source)&nbsp;method&nbsp;to&nbsp;throw&nbsp;an&nbsp;exception&nbsp;(errors&nbsp;in&nbsp;code&nbsp;that&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actually&nbsp;executed&nbsp;will&nbsp;still&nbsp;be&nbsp;notified&nbsp;but&nbsp;this&nbsp;may&nbsp;happen&nbsp;after&nbsp;the&nbsp;compile(Source)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method&nbsp;returns).&nbsp;This&nbsp;option&nbsp;is&nbsp;enabled&nbsp;by&nbsp;default&nbsp;in&nbsp;Saxon-EE,&nbsp;and&nbsp;is&nbsp;not&nbsp;available<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;Saxon-HE&nbsp;or&nbsp;Saxon-PE.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recommendation:&nbsp;disable&nbsp;this&nbsp;option&nbsp;unless&nbsp;you&nbsp;are&nbsp;confident&nbsp;that&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stylesheet&nbsp;you&nbsp;are&nbsp;compiling&nbsp;is&nbsp;error-free.</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-set_output_file"><strong>set_output_file</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-set_output_file">set_output_file</a>(self,&nbsp;output_file)<br>
+Set&nbsp;the&nbsp;output&nbsp;file&nbsp;where&nbsp;the&nbsp;output&nbsp;of&nbsp;the&nbsp;transformation&nbsp;will&nbsp;be&nbsp;sent<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output_file&nbsp;(str):&nbsp;The&nbsp;output&nbsp;file&nbsp;supplied&nbsp;as&nbsp;a&nbsp;str</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-set_parameter"><strong>set_parameter</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-set_parameter">set_parameter</a>(self,&nbsp;<a href="#PyXdmValue">PyXdmValue</a>&nbsp;value)<br>
+Set&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;stylesheet&nbsp;parameter<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;stylesheet&nbsp;parameter,&nbsp;as&nbsp;a&nbsp;string.&nbsp;For&nbsp;namespaced&nbsp;parameter&nbsp;use&nbsp;the&nbsp;JAXP&nbsp;solution&nbsp;i.e.&nbsp;"{uri}name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(<a href="#PyXdmValue">PyXdmValue</a>):&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;stylesheet&nbsp;parameter,&nbsp;or&nbsp;null&nbsp;to&nbsp;clear&nbsp;a&nbsp;previously&nbsp;set&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-set_property"><strong>set_property</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-set_property">set_property</a>(self,&nbsp;name,&nbsp;value)<br>
+Set&nbsp;a&nbsp;property&nbsp;specific&nbsp;to&nbsp;the&nbsp;processor&nbsp;in&nbsp;use.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(str):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;(str):&nbsp;The&nbsp;value&nbsp;of&nbsp;the&nbsp;property<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;XsltProcessor:&nbsp;set&nbsp;serialization&nbsp;properties&nbsp;(names&nbsp;start&nbsp;with&nbsp;'!'&nbsp;i.e.&nbsp;name&nbsp;"!method"&nbsp;-&gt;&nbsp;"xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'o':outfile&nbsp;name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'it':&nbsp;initial&nbsp;template,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'im':&nbsp;initial&nbsp;mode,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'s':&nbsp;source&nbsp;as&nbsp;file&nbsp;name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'m':&nbsp;switch&nbsp;on&nbsp;message&nbsp;listener&nbsp;for&nbsp;xsl:message&nbsp;instructions,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'item'|&nbsp;'node'&nbsp;:&nbsp;source&nbsp;supplied&nbsp;as&nbsp;an&nbsp;XdmNode&nbsp;<a href="builtins.html#object">object</a>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'extc':Set&nbsp;the&nbsp;native&nbsp;library&nbsp;to&nbsp;use&nbsp;with&nbsp;Saxon&nbsp;for&nbsp;extension&nbsp;functions&nbsp;written&nbsp;in&nbsp;C/C++/PHP</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-set_source"><strong>set_source</strong></a>(...)</dt><dd><tt>Set&nbsp;the&nbsp;source&nbsp;document&nbsp;for&nbsp;the&nbsp;transformation.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Keyword&nbsp;argument&nbsp;can&nbsp;only&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;following:&nbsp;file_name|xdm_node<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Exception:&nbsp;Exception&nbsp;is&nbsp;raised&nbsp;if&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;not&nbsp;one&nbsp;of&nbsp;file_name&nbsp;or&nbsp;node.</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-transform_to_file"><strong>transform_to_file</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-transform_to_file">transform_to_file</a>(self,&nbsp;**kwds)<br>
+Execute&nbsp;transformation&nbsp;to&nbsp;a&nbsp;file.&nbsp;It&nbsp;is&nbsp;possible&nbsp;to&nbsp;specify&nbsp;the&nbsp;as&nbsp;an&nbsp;argument&nbsp;or&nbsp;using&nbsp;the&nbsp;set_output_file&nbsp;method.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_node&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str),&nbsp;output_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;xsltproc.<a href="#PyXsltProcessor-transform_to_file">transform_to_file</a>(source_file="cat.xml",&nbsp;stylesheet_file="test1.xsl",&nbsp;output_file="result.xml")<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXsltProcessor-set_source">set_source</a>("cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.setoutput_file("result.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXsltProcessor-transform_to_file">transform_to_file</a>(stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;node&nbsp;=&nbsp;saxon_proc.parse_xml(xml_text="&lt;in/&gt;")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsltproc.<a href="#PyXsltProcessor-transform_to_file">transform_to_file</a>(output_file="result.xml",&nbsp;stylesheet_file="test1.xsl",&nbsp;xdm_node=&nbsp;node)</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-transform_to_string"><strong>transform_to_string</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-transform_to_string">transform_to_string</a>(self,&nbsp;**kwds)<br>
+Execute&nbsp;transformation&nbsp;to&nbsp;string.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_node&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXsltProcessor-transform_to_string">transform_to_string</a>(source_file="cat.xml",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXsltProcessor-set_source">set_source</a>("cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXsltProcessor-transform_to_string">transform_to_string</a>(stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;node&nbsp;=&nbsp;saxon_proc.parse_xml(xml_text="&lt;in/&gt;")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;xsltproc.<a href="#PyXsltProcessor-transform_to_string">transform_to_string</a>(stylesheet_file="test1.xsl",&nbsp;xdm_node=&nbsp;node)</tt></dd></dl>
+
+<dl><dt><a name="PyXsltProcessor-transform_to_value"><strong>transform_to_value</strong></a>(...)</dt><dd><tt><a href="#PyXsltProcessor-transform_to_value">transform_to_value</a>(self,&nbsp;**kwds)<br>
+Execute&nbsp;transformation&nbsp;to&nbsp;an&nbsp;Xdm&nbsp;Node<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwds:&nbsp;Possible&nbsp;optional&nbsp;arguments:&nbsp;source_file&nbsp;(str)&nbsp;or&nbsp;xdm_node&nbsp;(<a href="#PyXdmNode">PyXdmNode</a>).&nbsp;Other&nbsp;allowed&nbsp;argument:&nbsp;stylesheet_file&nbsp;(str)<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PyXdmNode">PyXdmNode</a>:&nbsp;Result&nbsp;of&nbsp;the&nbsp;transformation&nbsp;as&nbsp;an&nbsp;<a href="#PyXdmNode">PyXdmNode</a>&nbsp;<a href="builtins.html#object">object</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1)&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXsltProcessor-transform_to_value">transform_to_value</a>(source_file="cat.xml",&nbsp;stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;xsltproc.<a href="#PyXsltProcessor-set_source">set_source</a>("cat.xml")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node&nbsp;=&nbsp;xsltproc.<a href="#PyXsltProcessor-transform_to_value">transform_to_value</a>(stylesheet_file="test1.xsl")<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;node&nbsp;=&nbsp;saxon_proc.parse_xml(xml_text="&lt;in/&gt;")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node&nbsp;=&nbsp;xsltproc.transform_tovalue(stylesheet_file="test1.xsl",&nbsp;xdm_node=&nbsp;node)</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ATTRIBUTE</strong> = 2<br>
+<strong>COMMENT</strong> = 8<br>
+<strong>DOCUMENT</strong> = 9<br>
+<strong>ELEMENT</strong> = 1<br>
+<strong>NAMESPACE</strong> = 13<br>
+<strong>PROCESSING_INSTRUCTION</strong> = 7<br>
+<strong>TEXT</strong> = 3<br>
+<strong>UNKNOWN</strong> = 0<br>
+<strong>__test__</strong> = {}<br>
+<strong>parametersDict</strong> = None</td></tr></table>
+</body></html>
