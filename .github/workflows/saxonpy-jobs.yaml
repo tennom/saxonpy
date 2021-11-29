@@ -21,4 +21,6 @@ jobs:
         run: |
           pip install delocate
           delocate-listdeps dist/*.whl 
+        ACTIONS_STEP_DEBUG: true
+        ACTIONS_RUNNER_DEBUG: true
         continue-on-error: false
