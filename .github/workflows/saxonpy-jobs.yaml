@@ -21,9 +21,10 @@ jobs:
         run: |
           pip install delocate
           delocate-wheel -w fixed_wheels -v dist/*.whl
-      - name: tox setup
+      - name: isntall tox
         run: |
           pip install tox
+
+      - name: run tests with tox
+        run: |
           tox
-
-
