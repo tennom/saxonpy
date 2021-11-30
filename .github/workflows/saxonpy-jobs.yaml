@@ -3,9 +3,6 @@ on: [push, workflow_dispatch]
 jobs:
   Matrix-build:
     runs-on: ${{ matrix.os }}
-    env:
-      TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
-      TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
     strategy:
       matrix:
         os: [macos-latest]
@@ -18,23 +15,17 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: build wheel
         run: |
-          pip install -r requirements.txt
+          python -m pip install -r requirements.txt
           python setup.py bdist_wheel
       - name: delocate libs for multiple macOS support.
         run: |
-          pip install delocate
+          python -m pip install delocate
           delocate-wheel -w fixed_wheels -v dist/*.whl
-      - name: setup test venv
+      - name: install tox stuff
         run: |
-          python -m venv .venv
-          . .venv/bin/activate
-          pip install dist/saxonpy-0.0.2-cp38-cp38-macosx_10_14_x86_64.whl
-          pip install pytest
-          python -m saxonpy
-          pytest
-      - name: clean up test venv
-        run: | 
-          deactivate
-          rm -Rf .venv
+          python -m pip install --upgrade tox tox-gh-actions
+          
+      - name: "Run tox targets for ${{ matrix.python-version }}"
+        run: "python -m tox"
 
 
