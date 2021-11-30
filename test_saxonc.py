@@ -266,7 +266,7 @@ def testEmbeddedStylesheet(saxonproc, data_dir):
     href = hrefval.string_value
     print("href="+href)
     assert href != ""
-    styles_dir = "../../samples/styles/"
+    styles_dir = "../samples/styles/"
     trans.compile_stylesheet(stylesheet_file=styles_dir+href)
 
     assert isinstance(input_, PyXdmNode)
