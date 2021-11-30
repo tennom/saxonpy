@@ -31,7 +31,7 @@ jobs:
           pip install dist/saxonpy-0.0.2-cp38-cp38-macosx_10_14_x86_64.whl
           pip install pytest
           python -m saxonpy
-          pytest test_saxonc_mini.py
+          pytest
       - name: clean up test venv
         run: | 
           deactivate
