@@ -15,24 +15,15 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: build wheel
         run: |
-          python -m pip install -r requirements.txt
+          pip install -r requirements.txt
           python setup.py bdist_wheel
       - name: delocate libs for multiple macOS support.
         run: |
-          python -m pip install delocate
+          pip install delocate
           delocate-wheel -w fixed_wheels -v dist/*.whl
-      - name: installation for tests
+      - name: tox setup
         run: |
-          python -m pip install pytest
-          python -m pip install dist/saxonpy-0.0.2-cp38-cp38-macosx_10_14_x86_64.whl
-          python -m saxonpy
-      - name: run tests
-        run: python -m pytest tests/
-      # - name: install tox stuff
-      #   run: |
-      #     python -m pip install --upgrade tox tox-gh-actions
-
-      # - name: "Run tox targets for ${{ matrix.python-version }}"
-      #   run: "python -m tox"
+          pip install tox
+          tox
 
 
