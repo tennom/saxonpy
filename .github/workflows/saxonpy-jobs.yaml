@@ -24,12 +24,17 @@ jobs:
         run: |
           pip install delocate
           delocate-wheel -w fixed_wheels -v dist/*.whl
-      - name: run tests with tox
+      - name: setup test venv
         run: |
-          pip install tox-gh
-      - name: Setup test suite
-        run: tox4 r -vv --notest
-      - name: Run test suite
-        run: tox4 r --skip-pkg-install
-        env:
-          PYTEST_ADDOPTS: "-vv --durations=10"
+          python -m venv .venv
+          . .venv/bin/activate
+          pip install dist/saxonpy-0.0.2-cp38-cp38-macosx_10_14_x86_64.whl
+          pip install pytest
+          python -m saxonpy
+          pytest test_saxonc_mini.py
+      - name: clean up test venv
+        run: | 
+          deactivate
+          rm -Rf .venv
+
+
