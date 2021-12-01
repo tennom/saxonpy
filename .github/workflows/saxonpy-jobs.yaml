@@ -22,11 +22,13 @@ jobs:
           pip install delocate
       - name: add dynamic lib locations
         run: | 
-          install_name_tool -add_rpath @rpath/libjvm.dylib ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib
-          install_name_tool -add_rpath @rpath/libjava.dylib ${JAVA_HOME_8_X64}jre/lib/libjava.dylib
+          ln -s ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib /usr/local/lib/libjvm.dylib
+          ln -s ${JAVA_HOME_8_X64}jre/lib/libjava.dylib /usr/local/lib/libjava.dylib
+
       - name: delocate with all listing
         run: |
-          delocate-wheel -w fixed_wheels -v dist/*.whl
+          delocate-listdeps --all dist/*.whl
+      # delocate-wheel -w fixed_wheels -v dist/*.whl
       # - name: isntall tox
       # delocate-listdeps --all dist/*.whl
 
