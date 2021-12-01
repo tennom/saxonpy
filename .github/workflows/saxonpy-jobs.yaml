@@ -28,8 +28,8 @@ jobs:
           ls
           echo "this would be printing ID of the lib.----------->"
           otool -D src/saxonc_home/rt/lib/libnet.dylib
-          echo "replacing the lib--------------->"
-          install_name_tool -change @rpath/libnet.dylib ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib src/saxonc_home/rt/lib/libnet.dylib
+          echo "adding a path lib--------------->"
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libnet.dylib
           echo "see if the ID of the lib is changed.----------->"
           otool -D src/saxonc_home/rt/lib/libnet.dylib
 
