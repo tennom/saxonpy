@@ -22,11 +22,8 @@ jobs:
           pip install delocate
       - name: add dynamic lib locations
         run: | 
-          echo "javahome var prints here------------>"
-          echo $JAVA_HOME
-          echo "here goes the libjava.dylib listing......."
-          ls ${JAVA_HOME_8_X64}jre/lib
-          install_name_tool -add_rpath @rpath/libjvm.dylib. ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib
+          install_name_tool -add_rpath @rpath/libjvm.dylib ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib
+          install_name_tool -add_rpath @rpath/libjava.dylib ${JAVA_HOME_8_X64}jre/lib/libjava.dylib
           echo "here prints the info about libjvm.dylib-------->"
           otool -l ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib
 
