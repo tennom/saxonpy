@@ -20,11 +20,15 @@ jobs:
       - name: delocate libs for multiple macOS support.
         run: |
           pip install delocate
-          delocate-wheel -w fixed_wheels -v dist/*.whl
-      - name: isntall tox
+          delocate-listdeps dist/*.whl
+      - name: delocate with all listing
         run: |
-          pip install tox
+          delocate-listdeps --all dist/*.whl
+      # delocate-wheel -w fixed_wheels -v dist/*.whl
+      # - name: isntall tox
+      #   run: |
+      #     pip install tox
 
-      - name: run tests with tox
-        run: |
-          tox
+      # - name: run tests with tox
+      #   run: |
+      #     tox
