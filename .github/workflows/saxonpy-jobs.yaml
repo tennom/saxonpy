@@ -5,7 +5,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [macos-10.15]
         python-version: [3.8]
     steps:
       - uses: actions/checkout@v2
@@ -22,12 +22,8 @@ jobs:
           pip install delocate
       - name: add dynamic lib locations
         run: | 
-          
-          echo $JAVA_HOME_8_X64
-          ls $JAVA_HOME_8_X64
-          ls -l ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib
-
-
+          install_name_tool -add_rpath @rpath/libjvm.dylib. ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib
+          ls ${JAVA_HOME_8_X64}jre/lib/server/
       - name: delocate with all listing
         run: |
           delocate-listdeps --all dist/*.whl
