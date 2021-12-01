@@ -30,7 +30,7 @@ jobs:
           install_name_tool -change . ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libnet.dylib
           echo "attempt to change to java server dir.----------->"
           otool -D src/saxonc_home/rt/lib/libnet.dylib
-          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server 
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libnet.dylib
           echo "see if the ID of the lib is changed.----------->"
           otool -D src/saxonc_home/rt/lib/libnet.dylib
 
