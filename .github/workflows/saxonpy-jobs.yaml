@@ -27,7 +27,9 @@ jobs:
           echo "list waht's in the currrent dir............"
           ls
           echo "this would be printing ID of the lib.----------->"
-          otool -D saxonpy/saxonc_home/rt/lib/libnet.dylib
+          otool -D src/saxonc_home/rt/lib/libnet.dylib
+          echo "print lc_rpath--------------->"
+          echo $LC_RPATH
 
       # - name: delocate with all listing
       #   run: |
