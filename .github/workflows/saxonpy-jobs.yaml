@@ -25,7 +25,7 @@ jobs:
           
           echo $JAVA_HOME_8_X64
           ls $JAVA_HOME_8_X64
-          ls -l ${JAVA_HOME_8_X64jre}lib/server/libjvm.dylib
+          ls -l ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib
 
 
       - name: delocate with all listing
