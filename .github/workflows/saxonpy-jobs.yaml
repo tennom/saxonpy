@@ -28,12 +28,14 @@ jobs:
           ls
           echo "this would be printing ID of the lib.----------->"
           otool -D src/saxonc_home/rt/lib/libnet.dylib
-          echo "print lc_rpath--------------->"
-          echo $LC_RPATH
+          echo "replacing the lib--------------->"
+          install_name_tool -change @rpath/libnet.dylib ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib src/saxonc_home/rt/lib/libnet.dylib
+          echo "see if the ID of the lib is changed.----------->"
+          otool -D src/saxonc_home/rt/lib/libnet.dylib
 
-      # - name: delocate with all listing
-      #   run: |
-      #     delocate-listdeps --all dist/*.whl
+      - name: delocate with all listing
+        run: |
+          delocate-listdeps --all dist/*.whl
       # delocate-wheel -w fixed_wheels -v dist/*.whl
       # - name: isntall tox
       # delocate-listdeps --all dist/*.whl
