@@ -20,7 +20,13 @@ jobs:
       - name: delocate libs for multiple macOS support.
         run: |
           pip install delocate
-          delocate-listdeps dist/*.whl
+      - name: add dynamic lib locations
+        run: | 
+          
+          echo $JAVA_HOME_8_X64
+          ls $JAVA_HOME_8_X64
+
+
       - name: delocate with all listing
         run: |
           delocate-listdeps --all dist/*.whl
