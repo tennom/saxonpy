@@ -35,6 +35,20 @@ jobs:
           install_name_tool -change @loader_path/libjvm.dylib ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib  src/saxonc_home/rt/lib/libAppleScriptEngine.dylib
           install_name_tool -change @loader_path/libjvm.dylib ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib  src/saxonc_home/rt/lib/libunpack.dylib
           install_name_tool -change @loader_path/libjvm.dylib ${JAVA_HOME_8_X64}jre/lib/server/libjvm.dylib  src/saxonc_home/rt/lib/libosx.dylib
+
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libnet.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libosxui.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libawt.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libmlib_image.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libawt_lwawt.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libjsound.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libjawt.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libfontmanager.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libjpeg.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/liblcms.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libAppleScriptEngine.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libunpack.dylib
+          install_name_tool -add_rpath ${JAVA_HOME_8_X64}jre/lib/server src/saxonc_home/rt/lib/libosx.dylib
       - name: delocate with all listing
         run: |
           delocate-listdeps --all dist/*.whl
