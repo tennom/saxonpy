@@ -34,7 +34,7 @@ jobs:
           pytest test_saxonc.py
       - name: upload wheel
         env:
-          TWINE_USER: ${{ secrets.TWINE_TUSERNAME }}
+          TWINE_USER: ${{ secrets.TWINE_USERNAME }}
           TWINE_PASS: ${{ secrets.TWINE_PASSWORD }}
         run: |
           pip install twine
