@@ -2,9 +2,6 @@ name: saxonpy jobs
 on: [push, workflow_dispatch]
 jobs:
   Matrix-build:
-    env:
-      TWINE_USERNAME: ${{ secrets.TWINE_TUSER }}
-      TWINE_PASSWORD: ${{ secrets.TWINE_TPASS }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -40,8 +37,8 @@ jobs:
           pip install twine
           twine upload --help
           echo "checking twine------------>"
-          echo ${{ env.TWINE_USERNAME }}
-          twine upload --verbose -u "${{ env.TWINE_USERNAME }}" -p "${{ env.TWINE_PASSWORD }}" -r testpypi fixed_wheels/*.whl
+          echo ${{ secrets.TWINE_TUSER }}
+          twine upload --verbose -u "${{ secrets.TWINE_TUSER }}" -p "${{ secrets.TWINE_TPASS }}" -r testpypi fixed_wheels/*.whl
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: wheels-artifact
