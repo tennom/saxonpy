@@ -34,10 +34,8 @@ jobs:
           pytest test_saxonc.py
       - name: upload wheel
         env:
-          TWINE_TUSER: ${{ secrets.TWINE_TUSER }}
-          TWINE_TPASS: ${{ secrets.TWINE_TPASS }}
+          TWINE_USER: ${{ secrets.TWINE_TUSERNAME }}
+          TWINE_PASS: ${{ secrets.TWINE_PASSWORD }}
         run: |
           pip install twine
-          echo "checking twine------------>"
-          echo $TWINE_TUSER
-          twine upload --verbose -u "$TWINE_TUSER" -p "$TWINE_TPASS" -r testpypi fixed_wheels/*.whl
+          twine upload --verbose -u "$TWINE_USER" -p "$TWINE_PASS" fixed_wheels/*.whl
