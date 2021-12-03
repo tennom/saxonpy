@@ -23,15 +23,15 @@ jobs:
           python setup.py bdist_wheel
       - name: delocate wheel for multiple macOS support.
         run: |
-          echo "list what's in dist/------------>"
-          ls dist
-          echo "delocate thing------->"
           pip install delocate
           delocate-wheel -w fixed_wheels -v dist/*.whl
-          echo "rm ving dist wheels."
-          rm dist/*.whl
           echo "listing the fixed wheels....."
           ls fixed_wheels
+      - name: install pytest, saxonpy, and test
+        run: |
+          pip install pytest
+          pip install fixed_wheels/*.whl
+          pytest test_saxonc.py
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: wheels-artifact
