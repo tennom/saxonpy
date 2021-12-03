@@ -39,7 +39,9 @@ jobs:
         run: |
           pip install twine
           twine upload --help
-          twine upload --verbose -u ${{ env.TWINE_USERNAME }} -p {{ env.TWINE_PASSWORD }} -r testpypi fixed_wheels/*.whl
+          echo "checking twine------------>"
+          echo "${{ env.TWINE_USERNAME }}""
+          twine upload --verbose -u "${{ env.TWINE_USERNAME }}" -p "${{ env.TWINE_PASSWORD }}" -r testpypi fixed_wheels/*.whl
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: wheels-artifact
