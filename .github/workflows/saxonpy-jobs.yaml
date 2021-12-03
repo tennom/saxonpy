@@ -6,48 +6,38 @@ jobs:
     strategy:
       matrix:
         os: [macos-10.15]
-        python-version: [ '3.8' ]
+        python-version: [ '3.6', '3.7', '3.8', '3.9', '3.10' ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-
+      - name: add rpath to libzip.dylib because there's none
+        run: |
+          echo "Note: manually added libjvm.dylib to darwin source code."
+          install_name_tool -add_rpath @loader_path/. libs/darwin/rt/lib/libzip.dylib
+      - name: build wheel
+        run: |
+          pip install -r requirements.txt
+          python setup.py bdist_wheel
+      - name: delocate wheel for multiple macOS support.
+        run: |
+          pip install delocate
+          delocate-wheel -w fixed_wheels -v dist/*.whl
+          echo "listing the fixed wheels....."
+          ls fixed_wheels
+      - name: install pytest, saxonpy, and test
+        run: |
+          pip install pytest
+          pip install fixed_wheels/*.whl
+          pytest test_saxonc.py
       - name: upload wheel
         env:
           TWINE_TUSER: ${{ secrets.TWINE_TUSER }}
           TWINE_TPASS: ${{ secrets.TWINE_TPASS }}
-          all_seks: ${{ toJson(secrets) }}
         run: |
           pip install twine
-          twine upload --help
           echo "checking twine------------>"
           echo $TWINE_TUSER
-          echo "all seks----------->"
-          echo $all_seks
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Dump job context
-        env:
-          JOB_CONTEXT: ${{ toJson(job) }}
-        run: echo "$JOB_CONTEXT"
-      - name: Dump steps context
-        env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: echo "$STEPS_CONTEXT"
-      - name: Dump runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
-        run: echo "$RUNNER_CONTEXT"
-      - name: Dump strategy context
-        env:
-          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-        run: echo "$STRATEGY_CONTEXT"
-      - name: Dump matrix context
-        env:
-          MATRIX_CONTEXT: ${{ toJson(matrix) }}
-        run: echo "$MATRIX_CONTEXT"
-        # twine upload --verbose -u "$TWINE_TUSER" -p "$TWINE_TPASS" -r testpypi requirements.txt
+          twine upload --verbose -u "$TWINE_TUSER" -p "$TWINE_TPASS" -r testpypi fixed_wheels/*.whl
