@@ -6,45 +6,21 @@ jobs:
     strategy:
       matrix:
         os: [macos-10.15]
-        python-version: [ '3.6', '3.7', '3.8', '3.9', '3.10' ]
+        python-version: [ '3.8' ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: add rpath to libzip.dylib because there's none
-        run: |
-          echo "Note: manually added libjvm.dylib to darwin source code."
-          install_name_tool -add_rpath @loader_path/. libs/darwin/rt/lib/libzip.dylib
-      - name: build wheel
-        run: |
-          pip install -r requirements.txt
-          python setup.py bdist_wheel
-      - name: delocate wheel for multiple macOS support.
-        run: |
-          pip install delocate
-          delocate-wheel -w fixed_wheels -v dist/*.whl
-          echo "listing the fixed wheels....."
-          ls fixed_wheels
-      - name: install pytest, saxonpy, and test
-        run: |
-          pip install pytest
-          pip install fixed_wheels/*.whl
-          pytest test_saxonc.py
+
       - name: upload wheel
+        env:
+          TWINE_TUSER: ${{ secrets.TWINE_TUSER }}
+          TWINE_TPASS: ${{ secrets.TWINE_TPASS }}
         run: |
           pip install twine
           twine upload --help
           echo "checking twine------------>"
-          echo ${{ secrets.TWINE_TUSER }}
-          twine upload --verbose -u "${{ secrets.TWINE_TUSER }}" -p "${{ secrets.TWINE_TPASS }}" -r testpypi fixed_wheels/*.whl
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: wheels-artifact
-      #     path: fixed_wheels
-    
-      # - name: isntall and run tox
-      #   run: |
-      #     pip install tox
-      #     tox
+          echo $TWINE_TUSER
+          twine upload --verbose -u "$TWINE_TUSER" -p "$TWINE_TPASS" -r testpypi requirements.txt
