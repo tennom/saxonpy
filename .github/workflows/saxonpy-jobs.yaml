@@ -16,7 +16,7 @@ jobs:
 
       - name: upload wheel
         env:
-          TWINE_TUSER: ${{ secrets.TWINE_USERNAME }}
+          TWINE_TUSER: ${{ secrets.TWINE_TUSER }}
           TWINE_TPASS: ${{ secrets.TWINE_TPASS }}
           all_seks: ${{ toJson(secrets) }}
         run: |
