@@ -3,10 +3,8 @@ on: [push, workflow_dispatch]
 jobs:
   Matrix-build:
     env:
-      TWINE_TUSER: ${{ secrets.TWINE_TUSER }}
-      TWINE_TPASS: ${{ secrets.TWINE_TPASS }}
-      TWINE_USER: ${{ secrets.TWINE_USER }}
-      TWINE_PASS: ${{ secrets.TWINE_PASS }}
+      TWINE_USERNAME: ${{ secrets.TWINE_TUSER }}
+      TWINE_PASSWORD: ${{ secrets.TWINE_TPASS }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -40,7 +38,7 @@ jobs:
       - name: upload wheel
         run: |
           pip install twine
-          twine upload --username ${{ env.TWINE_TUSER }} --password ${{ env.TWINE_TPASS }} --repository testpypi fixed_wheels/*.whl
+          twine upload --repository testpypi fixed_wheels/*.whl
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: wheels-artifact
