@@ -24,14 +24,11 @@ jobs:
       - name: delocate wheel for multiple macOS support.
         run: |
           pip install delocate
-          delocate-wheel -w fixed_wheels dist/saxonpy-0.0.2-cp*.whl
+          delocate-wheel -w fixed_wheels -v dist/*.whl
+          echo "listing the fixed wheels....."
+          ls fixed_wheels
 
-      # - name: isntall tox
-      # delocate-listdeps --all dist/*.whl
-
-      #   run: |
-      #     pip install tox
-
-      # - name: run tests with tox
-      #   run: |
-      #     tox
+      - name: isntall and run tox
+        run: |
+          pip install tox
+          tox
