@@ -46,6 +46,7 @@ setup(
     author='Tennom',
     author_email='tennom@outlook.com',
     include_package_data=True,
+    url='https://github.com/tennom/saxonpy',
     # packages=find_packages(),
     package_dir={'saxonpy':'src'},
     packages=['saxonpy'],
