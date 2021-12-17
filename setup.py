@@ -39,7 +39,7 @@ ext_modules = [Extension(
                 ]
 setup(
     name='saxonpy',
-    version='0.0.2',
+    version='0.0.3',
     description='A python package for the Saxon/C 1.2.1, an XML processor by Saxonica.',
     long_description=long_description,
     long_description_content_type='text/markdown',
