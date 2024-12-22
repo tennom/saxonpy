@@ -1,3 +1,7 @@
+# Why NO new release!
+
+Thanks for checking out this repo. Let me explain why I haven’t released new Python packages for SaxonC (HE, the open source version). Saxonica, the official people behind SaxonC, has adopted a new method, native executables, to support C/C++ since SaxonC 12. It made things simpler to make Python packages and in fact Saxonica started offering their official Python packages, so no need for me to make packages for SaxonC. As soon as they offer a usable and reasonable open source SaxonC, we may not need to fork the SaxonC.
+
 # Welcome to Saxonpy!
 
 This's a python wheel package for [Saxon](https://www.saxonica.com/saxon-c/documentation/index.html), an XML processor from the Saxonica company. Saxon includes a range of tools for XML transformations, XML queries, and schema validations. For this release, we only include the support for the home edition or the open-source version. 
